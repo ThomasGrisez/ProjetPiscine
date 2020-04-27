@@ -58,10 +58,6 @@ public:
                 m_sommets[ex2]->ajouterVoisin(std::make_pair(m_sommets[ex1],poids));
             }
         }
-        else
-        {
-            std::cout << "Probleme dans les fichiers, les tailles des graphes ne sont egales\n";
-        }
     }
 
     ~Graphe()
