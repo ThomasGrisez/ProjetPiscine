@@ -24,7 +24,7 @@ void menu()
             std::cout << "1.Charger un graphe\n";
             std::cout << "2.Afficher dans la console\n";
             std::cout << "3.Afficher au format SVG\n";
-            std::cout << "4.Changer le systeme de ponderation d'un graphe\n";
+            std::cout << "4.Modifier le poids d'une arete du graphe\n";
             std::cout << "5.Calculer, afficher et sauvegarder les differents indices de centralite\n";
             std::cout << "6.Tester la vulnerabilite du graphe\n";
             std::cout << "7.Quitter\n";
