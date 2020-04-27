@@ -36,6 +36,8 @@
 		<Unit filename="Graphe.h" />
 		<Unit filename="Sommet.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="svgfile.cpp" />
+		<Unit filename="svgfile.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -28,11 +28,11 @@ public:
 
     void afficherSommetConsole()
     {
-        std::cout << "\tSommet "<< m_id << "(" << m_num << ")" << " = X : " << m_x << ", Y : " << m_y;
-        std::cout << "\tCes voisins sont :";
+        std::cout << "\tSommet "<< m_num << ", Nom : " << m_id << ", X : " << m_x << ", Y : " << m_y ;
+        std::cout << "\n\t\tVoisins ==>";
         for(size_t i=0; i<m_voisins.size();++i)
         {
-            std::cout << "\tSommet : " << m_voisins[i].first->getId() << ", poids : " << m_voisins[i].second;
+            std::cout << "  Sommet " << m_voisins[i].first->getId() << " et poids " << m_voisins[i].second;
         }
     }
 
