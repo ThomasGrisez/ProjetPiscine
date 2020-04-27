@@ -48,6 +48,10 @@ void menu()
             }
             break;
         case 3:
+            {
+                Graphe g{ topo, pond };
+                g.afficherGrapheSvg();
+            }
             break;
         case 4:
             {

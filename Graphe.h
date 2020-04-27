@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include "Arete.h"
+#include "svgfile.h"
 
 class Graphe
 {
@@ -71,50 +72,72 @@ public:
             delete a;
     }
 
-   void afficherGrapheConsole()
-   {
-       std::cout << "=========================GRAPHE=============================\n";
-       std::cout << "Ordre : " << m_sommets.size() << "\n";
-       std::cout << "Liste des sommets :\n";
-       for(auto s: m_sommets)
-       {
-           s->afficherSommetConsole();
-           std::cout<<"\n";
-       }
-       std::cout << "Liste des aretes :\n";
-       for(auto a: m_aretes)
-       {
-           a->afficherAreteConsole();
-           std::cout<<"\n";
-       }
-   }
+    void afficherGrapheConsole()
+    {
+        std::cout << "=========================GRAPHE=============================\n";
+        std::cout << "Ordre : " << m_sommets.size() << "\n";
+        std::cout << "Liste des sommets :\n";
+        for(auto s: m_sommets)
+        {
+            s->afficherSommetConsole();
+            std::cout<<"\n";
+        }
+        std::cout << "Liste des aretes :\n";
+        for(auto a: m_aretes)
+        {
+            a->afficherAreteConsole();
+            std::cout<<"\n";
+        }
+    }
 
-   void ModifierPonderation()
-   {
-       std::string fichier;
-       int numArete,poidsArete;
-       std::cout << "Indiquez le fichier dans lequel faire la modification : ";
-       std::cin >> fichier;
-       std::cout << "Indiquez l'arete a modifier : ";
-       std::cin >> numArete;
-       std::cout << "Indiquez le nouveau poids : ";
-       std::cin >> poidsArete;
+    void afficherGrapheSvg()
+    {
+        Svgfile out;
 
-       for(size_t i=0 ; i<m_pair.size();++i)
-       {
-           if(m_pair[i].first == numArete)
-            m_pair[i].second = poidsArete;
-       }
+        out.addGrid();
 
-       std::ofstream ofs (fichier);
+        for(size_t i=0; i<m_sommets.size();++i)
+        {
+            out.addDisk(m_sommets[i]->getX()*100, m_sommets[i]->getY()*100, 5, "blue");
+            out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getId(), "black");
+        }
+        for(size_t i=0; i<m_aretes.size();++i)
+        {
+            int x1= m_sommets[m_aretes[i]->getEx1()]->getX()*100;
+            int y1= m_sommets[m_aretes[i]->getEx1()]->getY()*100;
+            int x2= m_sommets[m_aretes[i]->getEx2()]->getX()*100;
+            int y2= m_sommets[m_aretes[i]->getEx2()]->getY()*100;
 
-       ofs << m_pair.size() << std::endl;
+            out.addLine(x1,y1,x2,y2,"black");
+        }
+    }
 
-       for(size_t j=0; j<m_pair.size();++j)
-       {
-           ofs << m_pair[j].first << " " << m_pair[j].second << std::endl;
-       }
-   }
+    void ModifierPonderation()
+    {
+        std::string fichier;
+        int numArete,poidsArete;
+        std::cout << "Indiquez le fichier dans lequel faire la modification : ";
+        std::cin >> fichier;
+        std::cout << "Indiquez l'arete a modifier : ";
+        std::cin >> numArete;
+        std::cout << "Indiquez le nouveau poids : ";
+        std::cin >> poidsArete;
+
+        for(size_t i=0 ; i<m_pair.size(); ++i)
+        {
+            if(m_pair[i].first == numArete)
+                m_pair[i].second = poidsArete;
+        }
+
+        std::ofstream ofs (fichier);
+
+        ofs << m_pair.size() << std::endl;
+
+        for(size_t j=0; j<m_pair.size(); ++j)
+        {
+            ofs << m_pair[j].first << " " << m_pair[j].second << std::endl;
+        }
+    }
 };
 
 #endif // GRAPHE_H_INCLUDED
