@@ -49,6 +49,9 @@ public:
                 b >> id_arete_pond >> poids;
                 a >> id_arete_topo >> ex1 >> ex2;
                 m_aretes.push_back( new Arete{id_arete_topo,ex1,ex2,poids} );
+
+                m_sommets[ex1]->ajouterVoisin(std::make_pair(m_sommets[ex2],poids));
+                m_sommets[ex2]->ajouterVoisin(std::make_pair(m_sommets[ex1],poids));
             }
         }
         else
