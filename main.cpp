@@ -1,4 +1,6 @@
 #include <iostream>
+#include <Sommet.h>
+#include <Arete.h>
 
 int main()
 {
