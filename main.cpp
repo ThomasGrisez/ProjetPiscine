@@ -1,9 +1,13 @@
 #include <iostream>
-#include <Sommet.h>
-#include <Arete.h>
+#include "Sommet.h"
+#include "Arete.h"
+#include "Graphe.h"
 
 int main()
 {
-    std::cout << "Hello world baise tes morts 12!" << std::endl;
+    Graphe g{"Topologie.txt","Ponderation.txt"};
+
+    g.afficherGrapheConsole();
+
     return 0;
 }
