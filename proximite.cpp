@@ -6,7 +6,8 @@
 #include "Arete.h"
 #include "proximite.h"
 #include <math.h>
-
+#include <queue>
+/*
     void Dijkstra(int num_s0,int fin)
     {
             ///Comparaison pour le plus court chemin
@@ -73,4 +74,4 @@
 
     }
 
-};
+};*/

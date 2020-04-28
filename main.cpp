@@ -66,9 +66,7 @@ void menu()
             exit(0);
             break;
         }
-
     }
-
 }
 
 int main()
