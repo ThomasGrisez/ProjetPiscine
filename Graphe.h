@@ -6,6 +6,7 @@
 #include <fstream>
 #include "Arete.h"
 #include "svgfile.h"
+#include "Sommet.h"
 
 class Graphe
 {
@@ -134,6 +135,49 @@ public:
             ofs << m_pair[j].first << " " << m_pair[j].second << std::endl;
         }
     }
+
+    std::vector<float> getDegs()
+    {
+        std::vector<float> a;
+        for(size_t i=0;i<m_sommets.size();++i)
+        {
+            a.push_back(m_sommets[i]->getDeg());
+        }
+        return a;
+    }
+
+    int getOrdre(){return m_sommets.size();}
+    int getTaille(){return m_aretes.size();}
+    std::vector<int> getId()
+    {
+        std::vector<int> a;
+        for(size_t i=0;i<m_sommets.size();++i)
+        {
+            a.push_back(m_sommets[i]->getId());
+        }
+        return a;
+    }
+    std::vector<std::string> getNoms()
+    {
+        std::vector<std::string> a;
+        for(size_t i=0;i<m_sommets.size();++i)
+        {
+            a.push_back(m_sommets[i]->getNom());
+        }
+        return a;
+    }
+
+    std::vector<std::vector<std::pair<Sommet*,int>>> getVecVoisins()
+    {
+        std::vector<std::vector<std::pair<Sommet*,int>>> a;
+
+        for(size_t i=0; i<m_sommets.size();++i)
+        {
+            a.push_back(m_sommets[i]->getVoisins());
+        }
+        return a;
+    }
+
 };
 
 #endif // GRAPHE_H_INCLUDED
