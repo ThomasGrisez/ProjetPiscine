@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "Sommet.h"
 #include "Arete.h"
 #include "svgfile.h"
 
