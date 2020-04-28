@@ -33,6 +33,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Arete.h" />
+		<Unit filename="Calculs.cpp" />
+		<Unit filename="Calculs.h" />
 		<Unit filename="Graphe.h" />
 		<Unit filename="Sommet.h" />
 		<Unit filename="main.cpp" />

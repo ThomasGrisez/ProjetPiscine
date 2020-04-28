@@ -20,6 +20,7 @@ public:
     std::string getId(){return m_id;}
     int getX(){return m_x;}
     int getY(){return m_y;}
+    int getDeg(){return m_voisins.size();}
     std::vector< std::pair<Sommet*,int>>& getVoisins(){return m_voisins;}
 
     void ajouterVoisin(std::pair<Sommet*,int> a){
