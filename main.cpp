@@ -4,17 +4,9 @@
 #include "Graphe.h"
 #include "Calculs.h"
 
-void menu();
-
-int main()
-{
-    menu();
-    return 0;
-}
-
 void menu()
 {
-    std::string topo,pond;
+    std::string topo="t.txt",pond="p.txt";
     int choix;
     while(choix!=7)
     {
@@ -61,6 +53,12 @@ void menu()
             }
             break;
         case 5:
+            {
+                Graphe g{ topo, pond };
+                CentraliteDegresNormalise(g);
+                CentraliteDegresNonNormalise(g);
+                CentraliteVecteurPropre(g);
+            }
             break;
         case 6:
             break;
@@ -71,4 +69,10 @@ void menu()
 
     }
 
+}
+
+int main()
+{
+    menu();
+    return 0;
 }
