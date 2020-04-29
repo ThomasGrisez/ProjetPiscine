@@ -61,6 +61,10 @@ void menu()
             }
             break;
         case 6:
+            {
+                Graphe g{topo, pond};
+                vulnerabilite(g)
+            }
             break;
         case 7:
             exit(0);
