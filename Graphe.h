@@ -99,7 +99,7 @@ public:
         for(size_t i=0; i<m_sommets.size();++i)
         {
             out.addDisk(m_sommets[i]->getX()*100, m_sommets[i]->getY()*100, 5, "blue");
-            out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getId(), "black");
+            out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getNom(), "black");
         }
         for(size_t i=0; i<m_aretes.size();++i)
         {
@@ -107,7 +107,7 @@ public:
             int y1= m_sommets[m_aretes[i]->getEx1()]->getY()*100;
             int x2= m_sommets[m_aretes[i]->getEx2()]->getX()*100;
             int y2= m_sommets[m_aretes[i]->getEx2()]->getY()*100;
-            out.addText((x1+x2)/2, (y1+y2)/2-20, m_aretes[i]->getPoids(), "orange");
+            out.addText((x1+x2)/2+5, (y1+y2)/2-10, m_aretes[i]->getPoids(), "red");
             out.addLine(x1,y1,x2,y2,"black");
         }
     }

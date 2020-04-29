@@ -86,9 +86,6 @@ std::vector<float> CentraliteVecteurPropre(Graphe &g)
 ///Centralité de proximité
 std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 {
-
-    ///----------------Dijkstra--------------
-    int compteur=0;
     ///Comparaison pour le plus court chemin
     auto cmp = [] (std::pair<Sommet*,int> a, std::pair<Sommet*,int> b)
     {
@@ -103,7 +100,7 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
     ///pour les distances
     std::vector<int> dist (g.getOrdre(),-1);
 
-    ///�tape initiale, on enfile le sommet initial
+    ///tape initiale, on enfile le sommet initial
     dist[sommetInit] = 0;
     file.push ( std::make_pair(g.getVecSommets()[sommetInit], 0) );
 
@@ -125,7 +122,7 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 
         for(auto succ : (Pair.first)->getVoisins() )
         {
-            ///Si pas marqu�
+            ///Si pas marqué
             if(couleurs[succ.first->getId() ] == 0)
             {
                 ///Si on trouve un meilleur chemin avec ce sommet
@@ -136,10 +133,6 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
                     preds[ succ.first->getId() ] = Pair.first->getId();
                     ///on le rentre dans la file
                     file.push(std::make_pair( succ.first, dist[ succ.first->getId() ] ));
-                }
-                if((Pair.second + succ.second == dist[ succ.first->getId() ]))
-                {
-                    compteur++;
                 }
             }
         }
@@ -170,7 +163,7 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 void affichageConsole(Graphe &g)
 {
     std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
-    std::vector<std::pair<float,float>> degNonNorm = CentraliteDegresNormalise(g);
+    std::vector<std::pair<float,float>> degNonNorm = CentraliteDegresNonNormalise(g);
     std::vector<float> Cvp = CentraliteVecteurPropre(g);
 
     std::cout << "======Centralite de degre=============\n";

@@ -4,7 +4,7 @@
 #include "Graphe.h"
 #include "Calculs.h"
 #include "vulnerabilite.h"
-
+/*
     void vulnerabilite(int sommetInit, Graphe &g)
     {
             ///Comparaison pour le plus court chemin

@@ -63,7 +63,6 @@ void menu()
         case 6:
             {
                 Graphe g{topo, pond};
-                vulnerabilite(g)
             }
             break;
         case 7:
