@@ -6,9 +6,16 @@
 #include "Arete.h"
 #include "proximite.h"
 #include <math.h>
+<<<<<<< Updated upstream
 #include <queue>
 /*
     void CentraliteProximite(int num_s0,int fin, Graphe &g)
+=======
+
+
+for(int i=0;i<NB SOMMET -1;++i)
+    void Dijkstra(int num_s0,int fin)
+>>>>>>> Stashed changes
     {
 
         ///----------------Dijkstra--------------
@@ -75,6 +82,7 @@
     std::vector<std::pair<float,float>> vecNonNorm;
     int ordre = g.getOrdre();
 
+<<<<<<< Updated upstream
     for(int i=0; i<ordre; ++i)
     {
         idSommet = g.getId()[i];
@@ -95,3 +103,13 @@
 
 */
 
+=======
+
+
+    }
+
+
+
+
+};
+>>>>>>> Stashed changes
