@@ -3,6 +3,6 @@
 
 #include "Graphe.h"
 
-void CentraliteProximite(int num_s0,int fin, Graphe &g);
+void CentraliteProximite(int sommetInit, Graphe &g);
 
 #endif // PROXIMITE_H_INCLUDED

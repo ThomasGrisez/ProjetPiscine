@@ -93,8 +93,8 @@ public:
         Svgfile out;
 
         out.addGrid();
-        std::string rouge=makeRGB(255,0,0); ///Bon il est tard et je suis défoncé, faut juste faire une variable qui va servir de rouge de référence pour faire le dégradé
-        std::string bleu=makeRGB(0,0,255);///Idem pour le bleu
+        //std::string rouge=makeRGB(255,0,0); ///Bon il est tard et je suis défoncé, faut juste faire une variable qui va servir de rouge de référence pour faire le dégradé
+        //std::string bleu=makeRGB(0,0,255);///Idem pour le bleu
 
         for(size_t i=0; i<m_sommets.size();++i)
         {
@@ -160,6 +160,7 @@ public:
         }
         return a;
     }
+
     std::vector<std::string> getNoms()
     {
         std::vector<std::string> a;
@@ -181,6 +182,7 @@ public:
         return a;
     }
 
+    std::vector<Sommet*> getVecSommets(){return m_sommets;}
 };
 
 #endif // GRAPHE_H_INCLUDED

@@ -3,6 +3,7 @@
 #include "Arete.h"
 #include "Graphe.h"
 #include "Calculs.h"
+#include "proximite.h"
 
 void menu()
 {
@@ -58,6 +59,12 @@ void menu()
                 CentraliteDegresNormalise(g);
                 CentraliteDegresNonNormalise(g);
                 CentraliteVecteurPropre(g);
+                std::cout << "======Centralite de proximite=======\n";
+                for(size_t i=0;i < g.getOrdre();++i)
+                {
+                    CentraliteProximite(i,g);
+                }
+
             }
             break;
         case 6:
