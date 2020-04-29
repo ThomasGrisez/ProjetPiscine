@@ -93,6 +93,8 @@ public:
         Svgfile out;
 
         out.addGrid();
+        std::string rouge=makeRGB(255,0,0); ///Bon il est tard et je suis défoncé, faut juste faire une variable qui va servir de rouge de référence pour faire le dégradé
+        std::string bleu=makeRGB(0,0,255);///Idem pour le bleu
 
         for(size_t i=0; i<m_sommets.size();++i)
         {
@@ -105,7 +107,7 @@ public:
             int y1= m_sommets[m_aretes[i]->getEx1()]->getY()*100;
             int x2= m_sommets[m_aretes[i]->getEx2()]->getX()*100;
             int y2= m_sommets[m_aretes[i]->getEx2()]->getY()*100;
-
+            out.addText((x1+x2)/2, (y1+y2)/2-20, m_aretes[i]->getPoids(), "orange");
             out.addLine(x1,y1,x2,y2,"black");
         }
     }

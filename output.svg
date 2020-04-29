@@ -59,18 +59,31 @@
 <text x="100" y="480" fill="black" >7</text>
 <circle cx="500" cy="500" r="5" fill="blue" />
 <text x="500" y="480" fill="black" >8</text>
+<text x="250" y="130" fill="orange" >5</text>
 <line x1="300" y1="100" x2="200" y2="200" stroke="black" />
+<text x="350" y="130" fill="orange" >3</text>
 <line x1="300" y1="100" x2="400" y2="200" stroke="black" />
+<text x="250" y="230" fill="orange" >9</text>
 <line x1="200" y1="200" x2="300" y2="300" stroke="black" />
+<text x="350" y="230" fill="orange" >4</text>
 <line x1="400" y1="200" x2="300" y2="300" stroke="black" />
+<text x="250" y="330" fill="orange" >7</text>
 <line x1="300" y1="300" x2="200" y2="400" stroke="black" />
+<text x="350" y="330" fill="orange" >8</text>
 <line x1="300" y1="300" x2="400" y2="400" stroke="black" />
+<text x="150" y="330" fill="orange" >4</text>
 <line x1="200" y1="200" x2="100" y2="500" stroke="black" />
+<text x="450" y="330" fill="orange" >3</text>
 <line x1="400" y1="200" x2="500" y2="500" stroke="black" />
+<text x="250" y="380" fill="orange" >1</text>
 <line x1="200" y1="400" x2="300" y2="400" stroke="black" />
+<text x="350" y="380" fill="orange" >4</text>
 <line x1="300" y1="400" x2="400" y2="400" stroke="black" />
+<text x="450" y="430" fill="orange" >5</text>
 <line x1="400" y1="400" x2="500" y2="500" stroke="black" />
+<text x="150" y="430" fill="orange" >3</text>
 <line x1="200" y1="400" x2="100" y2="500" stroke="black" />
+<text x="300" y="480" fill="orange" >2</text>
 <line x1="100" y1="500" x2="500" y2="500" stroke="black" />
 
 
