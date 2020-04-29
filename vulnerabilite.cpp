@@ -4,9 +4,8 @@
 #include "Graphe.h"
 #include "Calculs.h"
 #include "vulnerabilite.h"
-void vunlerabilite()
 
-    void Dijkstra(int num_s0,int fin)
+    void vulnerabilite(int sommetInit, Graphe &g)
     {
             ///Comparaison pour le plus court chemin
             auto cmp = [] (std::pair<Sommet*,int> a, std::pair<Sommet*,int> b) { return b.second < a.second;} ;
