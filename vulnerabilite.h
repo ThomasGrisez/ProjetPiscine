@@ -2,5 +2,5 @@
 #define VULNERABILITE_H_INCLUDED
 
 
-
+void vunlerabilite();
 #endif // VULNERABILITE_H_INCLUDED
