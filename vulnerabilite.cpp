@@ -4,8 +4,8 @@
 #include "Graphe.h"
 #include "Calculs.h"
 #include "vulnerabilite.h"
-void vunlerabilite()
-
+#include <queue>
+/*
     void Dijkstra(int num_s0,int fin)
     {
             ///Comparaison pour le plus court chemin
@@ -69,3 +69,4 @@ void vunlerabilite()
     }
 
 };
+*/

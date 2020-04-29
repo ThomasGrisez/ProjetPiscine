@@ -5,9 +5,11 @@
 #include "Sommet.h"
 #include "Arete.h"
 #include <math.h>
+#include <queue>
+#include <fstream>
 
-///Centralité de degré, indices normalisé et non normalisés
-void CentraliteDegresNormalise(Graphe &g)
+///CentralitÃ© de degrÃ©, indices normalisÃ© et non normalisÃ©s
+std::vector<std::pair<float,float>> CentraliteDegresNormalise(Graphe &g)
 {
     int idSommet;
     float idC;
@@ -22,12 +24,9 @@ void CentraliteDegresNormalise(Graphe &g)
         vecNorm.push_back(std::make_pair(idSommet, idC));
     }
 
-    std::cout << "======Indices Normalise======\n";
-    for(int j=0; j<ordre; ++j)
-        std::cout << "\tSommet " << vecNorm[j].first << ", indice = " << vecNorm[j].second << std::endl;
-
+    return vecNorm;
 }
-void CentraliteDegresNonNormalise(Graphe &g)
+std::vector< std::pair<float,float> > CentraliteDegresNonNormalise(Graphe &g)
 {
     std::vector<std::pair<float,float>> vecNonNorm;
     int ordre = g.getOrdre();
@@ -35,12 +34,10 @@ void CentraliteDegresNonNormalise(Graphe &g)
     for(int i=0; i<ordre; ++i)
         vecNonNorm.push_back(std::make_pair(g.getId()[i],   g.getDegs()[i] ));
 
-    std::cout << "======Indices Non Normalise======\n";
-    for(int j=0; j<ordre; ++j)
-        std::cout << "\tSommet " << vecNonNorm[j].first << ", indice : " << vecNonNorm[j].second << std::endl;
+    return vecNonNorm;
 }
-///Centralité de vecteur propre
-void CentraliteVecteurPropre(Graphe &g)
+///CentralitÃ© de vecteur propre
+std::vector<float> CentraliteVecteurPropre(Graphe &g)
 {
     float lambda = 0;
     float ancienLambda;
@@ -57,7 +54,7 @@ void CentraliteVecteurPropre(Graphe &g)
 
     do
     {
-        for(int i=0; i<ordre;++i)
+        for(int i=0; i<ordre; ++i)
             c[i] = 0;
         for(int i=0; i< ordre ; ++i)///Pour chaque sommet
         {
@@ -84,15 +81,130 @@ void CentraliteVecteurPropre(Graphe &g)
     }
     while( (lambda - ancienLambda) > 0.01);
 
-    std::cout << "======Indices de vecteur propre======\n";
-    for(size_t i=0; i<Cvp.size(); ++i)
+    return Cvp;
+}
+///CentralitÃ© de proximitÃ©
+std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
+{
+
+    ///----------------Dijkstra--------------
+    int compteur=0;
+    ///Comparaison pour le plus court chemin
+    auto cmp = [] (std::pair<Sommet*,int> a, std::pair<Sommet*,int> b)
+    {
+        return b.second < a.second;
+    } ;
+    ///file de prioritÃ©
+    std::priority_queue < std::pair<Sommet*,int>,std::vector< std::pair<Sommet*,int> >,decltype(cmp) > file(cmp);
+    /// pour le marquage
+    std::vector<int> couleurs(g.getOrdre(),0);
+    ///pour les prï¿½dï¿½cesseurs
+    std::vector<int> preds(g.getOrdre(),-1);
+    ///pour les distances
+    std::vector<int> dist (g.getOrdre(),-1);
+
+    ///ï¿½tape initiale, on enfile le sommet initial
+    dist[sommetInit] = 0;
+    file.push ( std::make_pair(g.getVecSommets()[sommetInit], 0) );
+
+    std::pair<Sommet*,int> Pair;
+
+    ///Tant que la file n est pas vide
+    while(!file.empty())
+    {
+        Pair = file.top();
+        file.pop();
+
+        while( ( !file.empty() ) && ( couleurs[ Pair.first->getId() ] == 1) )
+        {
+            Pair = file.top();
+            file.pop();
+        }
+        ///on le marque
+        couleurs[Pair.first->getId()] = 1;
+
+        for(auto succ : (Pair.first)->getVoisins() )
+        {
+            ///Si pas marquï¿½
+            if(couleurs[succ.first->getId() ] == 0)
+            {
+                ///Si on trouve un meilleur chemin avec ce sommet
+                if( (dist[ succ.first->getId() ] == -1) || (Pair.second + succ.second < dist[ succ.first->getId() ]) )
+                {
+                    ///on actualise la distance et le predecesseur
+                    dist[ succ.first->getId() ] = Pair.second + succ.second;
+                    preds[ succ.first->getId() ] = Pair.first->getId();
+                    ///on le rentre dans la file
+                    file.push(std::make_pair( succ.first, dist[ succ.first->getId() ] ));
+                }
+                if((Pair.second + succ.second == dist[ succ.first->getId() ]))
+                {
+                    compteur++;
+                }
+            }
+        }
+    }
+    ///Calcul pour trouver la centralitÃ© de proximitÃ©
+    float Cp_Norm;
+    float Cp_NonNorm;
+    float sommeDist = 0;
+
+    for(int i=0; i< g.getOrdre(); ++i)
+    {
+        sommeDist += dist[i];
+    }
+
+    Cp_NonNorm = 1/sommeDist;
+
+    Cp_Norm = (g.getOrdre() -1) / sommeDist;
+
+    return std::make_pair(Cp_Norm,Cp_NonNorm);
+};
+
+
+///CentralitÃ© d'intermediaritÃ©
+
+
+
+///Affichage des Indices
+void affichageConsole(Graphe &g)
+{
+    std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
+    std::vector<std::pair<float,float>> degNonNorm = CentraliteDegresNormalise(g);
+    std::vector<float> Cvp = CentraliteVecteurPropre(g);
+
+    std::cout << "======Centralite de degre=============\n";
+    for(int j=0; j<g.getOrdre(); ++j)
+        std::cout << "\tSommet " << g.getNoms()[degNorm[j].first] << ", indice Normalise = " << degNorm[j].second << ", indice Non Normalise = " << degNonNorm[j].second << std::endl;
+
+    std::cout << "======Centralite de vecteur propre======\n";
+    for(int i=0; i<g.getOrdre(); ++i)
     {
         std::cout << "\tSommet " << g.getNoms()[i] << ", indice = " << Cvp[i] << std::endl;
     }
 
+    std::cout << "======Centralite de Proximite==========\n";
+    for(int i=0; i<g.getOrdre();++i)
+    {
+        std::pair<float,float> Cp = CentraliteProximite(i,g);
+        std::cout << "\tSommet " << g.getNoms()[i] << ", indice Normalise = " << Cp.first << ", indice Non Normalise = " << Cp.second << std::endl;
+    }
 }
-///Centralité de proximité
 
 
+void SauvegardeFichier(Graphe &g)
+{
+    std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
+    std::vector<std::pair<float,float>> degNonNorm = CentraliteDegresNormalise(g);
+    std::vector<float> Cvp = CentraliteVecteurPropre(g);
+    std::ofstream ofs("Indices.txt");
 
-///Centralité d'intermediarité
+    ofs << "Indice du sommet | Centralite de degre | Centralite de vecteur propre | Centralite de proximite | Centralite d'intermediarite" << std::endl;
+    ofs << "A chaque fois : indice NormalisÃ© puis Non NormalisÃ©" << std::endl;
+
+    for(int i=0; i< g.getOrdre();++i)
+    {
+        std::pair<float,float> Cp = CentraliteProximite(i,g);
+        ofs << g.getId()[i] <<" | "<< degNorm[i].second <<"  "<< degNonNorm[i].second <<" | "<< Cvp[i] <<" | "<< Cp.first <<"   "<< Cp.second << std::endl;
+    }
+}

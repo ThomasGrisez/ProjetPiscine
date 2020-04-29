@@ -38,8 +38,6 @@
 		<Unit filename="Graphe.h" />
 		<Unit filename="Sommet.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="proximite.cpp" />
-		<Unit filename="proximite.h" />
 		<Unit filename="svgfile.cpp" />
 		<Unit filename="svgfile.h" />
 		<Unit filename="vulnerabilite.cpp" />

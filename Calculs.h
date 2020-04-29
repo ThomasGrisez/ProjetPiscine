@@ -3,8 +3,7 @@
 
 #include "Graphe.h"
 
-void CentraliteDegresNormalise(Graphe &g);
-void CentraliteDegresNonNormalise(Graphe &g);
-void CentraliteVecteurPropre(Graphe &g);
+void affichageConsole(Graphe &g);
+void SauvegardeFichier(Graphe &g);
 
 #endif // CALCULS_H_INCLUDED
