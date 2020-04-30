@@ -5,6 +5,7 @@
 #include "Calculs.h"
 #include "vulnerabilite.h"
 
+//test de la connexite
     void vulnerabilite(int sommetInit, Graphe &g)
     {
             ///Comparaison pour le plus court chemin
@@ -67,4 +68,41 @@
 
     }
 
-};
+
+//comparaison centralite de degré
+Graphe Comparaison degre( &graphe,&graphe1)
+{   int idSommet;
+    float idC;
+    std::vector<std::pair<float,float>> vecNorm;
+    int ordre = g.getOrdre();
+
+    for(int i=0; i<ordre; ++i)
+    {
+        idSommet = g.getId()[i];
+        idC = ( g.getDegs()[i] ) / ( ordre-1 );
+
+        vecNorm.push_back(std::make_pair(idSommet, idC));
+    }
+
+{   int idSommet1;
+    float idC1;
+    std::vector<std::pair<float,float>> vecNorm1;
+    int ordre1 = g1.getOrdre();
+
+    for(int i=0; i<ordre1; ++i)
+    {
+        idSommet1 = g1.getId()[i];
+        idC1 = ( g1.getDegs()[i] ) / ( ordre-1 );
+
+        vecNorm1.push_back(std::make_pair(idSommet, idC));
+    }
+     std::cout << "======Comparaison indice degre normalise apres modification======\n";
+    for(int j=0; j<ordre; ++j)
+    {
+        std::cout << "\tSommet " << vecNorm[j].first << ", indice = " << vecNorm[j].second <<
+         ", indice actualisé = "<< vecNorm1[j].second << ", soit une difference de"<<
+         vecNorm[j].second- vecNorm1[j].second  std::endl;
+    }
+
+}
+
