@@ -56,21 +56,13 @@ void menu()
         case 5:
             {
                 Graphe g{ topo, pond };
-                CentraliteDegresNormalise(g);
-                CentraliteDegresNonNormalise(g);
-                CentraliteVecteurPropre(g);
-                std::cout << "======Centralite de proximite=======\n";
-                for(size_t i=0;i < g.getOrdre();++i)
-                {
-                    CentraliteProximite(i,g);
-                }
-
+                affichageConsole(g);
+                SauvegardeFichier(g);
             }
             break;
         case 6:
             {
                 Graphe g{topo, pond};
-                vulnerabilite(g)
             }
             break;
         case 7:

@@ -4,22 +4,26 @@
 #include "Graphe.h"
 #include "Calculs.h"
 #include "vulnerabilite.h"
+<<<<<<< HEAD
 
 //test de la connexite
+=======
+
+>>>>>>> master
     void vulnerabilite(int sommetInit, Graphe &g)
     {
             ///Comparaison pour le plus court chemin
             auto cmp = [] (std::pair<Sommet*,int> a, std::pair<Sommet*,int> b) { return b.second < a.second;} ;
-            ///file de priorité
+            ///file de prioritï¿½
             std::priority_queue < std::pair<Sommet*,int>,std::vector< std::pair<Sommet*,int> >,decltype(cmp) > file(cmp);
             /// pour le marquage
             std::vector<int> couleurs((int)m_sommets.size(),0);
-            ///pour les prédécesseurs
+            ///pour les prï¿½dï¿½cesseurs
             std::vector<int> preds((int)m_sommets.size(),-1);
             ///pour les distances
             std::vector<int> dist ((int)m_sommets.size(),-1);
 
-            ///étape initiale, on enfile le sommet initial
+            ///ï¿½tape initiale, on enfile le sommet initial
             dist[num_s0] = 0;
             file.push ( std::make_pair(m_sommets[num_s0], 0) );
 
@@ -41,7 +45,7 @@
 
                 for(auto succ : (Pair.first)->getSuccesseurs() )
                 {
-                    ///Si pas marqué
+                    ///Si pas marquï¿½
                     if(couleurs[succ.first->getNum() ] == 0)
                     {
                         ///Si on trouve un meilleur chemin avec ce sommet
@@ -62,12 +66,13 @@
                 std::vector<int> Nonconnexe;
                 if dist[i]==1
                     Nonconnexe.push_back(1);
-                std::cout<<"il y a "<<Nonconnexe.size()<<" vecteurs non relié au reste du graphe suite à la supression d'arete";
+                std::cout<<"il y a "<<Nonconnexe.size()<<" vecteurs non reliï¿½ au reste du graphe suite ï¿½ la supression d'arete";
             }
 
 
     }
 
+<<<<<<< HEAD
 
 //comparaison centralite de degré
 Graphe Comparaison degre( &graphe,&graphe1)
@@ -106,3 +111,7 @@ Graphe Comparaison degre( &graphe,&graphe1)
 
 }
 
+=======
+};
+
+>>>>>>> master

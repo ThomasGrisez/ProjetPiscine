@@ -1,0 +1,7 @@
+Indice du sommet | Centralite de degre | Centralite de vecteur propre | Centralite de proximite | Centralite d'intermediarite
+A chaque fois : indice Normalisé puis Non Normalisé
+0 | 0.25  0.25 | 0.0059331 | 0.571429   0.142857
+1 | 0.25  0.25 | 0.0059331 | 0.571429   0.142857
+2 | 1  1 | 0.0237324 | 1   0.25
+3 | 0.25  0.25 | 0.0059331 | 0.571429   0.142857
+4 | 0.25  0.25 | 0.0059331 | 0.571429   0.142857
