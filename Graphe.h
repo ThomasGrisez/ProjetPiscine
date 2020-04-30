@@ -93,15 +93,18 @@ public:
         Svgfile out;
 
         out.addGrid();
-        //std::string rouge=makeRGB(255,0,0); ///Bon il est tard et je suis défoncé, faut juste faire une variable qui va servir de rouge de référence pour faire le dégradé
-        //std::string bleu=makeRGB(0,0,255);///Idem pour le bleu
+        out.addRect(700,100,1000,100,1000,200,700,200,"white",2,"black");
+        out.addText(715,115, "Centralite de degre normalise", "green");
+        out.addText(715,135,"Centralite de vecteur propre","red");
+        out.addText(715,155,"Centralite de proximite normalise","blue");
 
-        for(size_t i=0; i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             out.addDisk(m_sommets[i]->getX()*100, m_sommets[i]->getY()*100, 5, "blue");
             out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getNom(), "black");
+            out.addText(m_sommets[i]->getX()*100+5, (m_sommets[i]->getY()*100)-20,)
         }
-        for(size_t i=0; i<m_aretes.size();++i)
+        for(size_t i=0; i<m_aretes.size(); ++i)
         {
             int x1= m_sommets[m_aretes[i]->getEx1()]->getX()*100;
             int y1= m_sommets[m_aretes[i]->getEx1()]->getY()*100;
@@ -142,19 +145,25 @@ public:
     std::vector<float> getDegs()
     {
         std::vector<float> a;
-        for(size_t i=0;i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             a.push_back(m_sommets[i]->getDeg());
         }
         return a;
     }
 
-    int getOrdre(){return m_sommets.size();}
-    int getTaille(){return m_aretes.size();}
+    int getOrdre()
+    {
+        return m_sommets.size();
+    }
+    int getTaille()
+    {
+        return m_aretes.size();
+    }
     std::vector<int> getId()
     {
         std::vector<int> a;
-        for(size_t i=0;i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             a.push_back(m_sommets[i]->getId());
         }
@@ -164,7 +173,7 @@ public:
     std::vector<std::string> getNoms()
     {
         std::vector<std::string> a;
-        for(size_t i=0;i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             a.push_back(m_sommets[i]->getNom());
         }
@@ -175,14 +184,17 @@ public:
     {
         std::vector<std::vector<std::pair<Sommet*,int>>> a;
 
-        for(size_t i=0; i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             a.push_back(m_sommets[i]->getVoisins());
         }
         return a;
     }
 
-    std::vector<Sommet*> getVecSommets(){return m_sommets;}
+    std::vector<Sommet*> getVecSommets()
+    {
+        return m_sommets;
+    }
 };
 
 #endif // GRAPHE_H_INCLUDED

@@ -113,6 +113,32 @@ void Svgfile::addTriangle(double x1, double y1, double x2, double y2,
             << "\" />\n";
 }
 
+void Svgfile::addRect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, std::string colorFill, double thickness, std::string colorStroke)
+{
+    m_ostrm << "<polygon points=\" "
+            << x1 << "," << y1 << " "
+            << x2 << "," << y2 << " "
+            << x3 << "," << y3 << " "
+            << x4 << "," << y4
+            << "\" style=\"fill:" << colorFill
+            << ";stroke:" << colorStroke
+            << ";stroke-width:" << thickness
+            << "\" />\n";
+}
+
+void Svgfile::addRect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, std::string colorFill)
+{
+    m_ostrm << "<polygon points=\" "
+            << x1 << "," << y1 << " "
+            << x2 << "," << y2 << " "
+            << x3 << "," << y3 << " "
+            << x4 << "," << y4
+            << "\" style=\"fill:" << colorFill
+            << "\" />\n";
+}
+
+
+
 void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string color)
 {
     m_ostrm << "<line "

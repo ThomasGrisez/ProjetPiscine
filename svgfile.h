@@ -15,11 +15,11 @@ class Svgfile
 
         void addDisk(double x, double y, double r, std::string color=defcol);
         void addCircle(double x, double y, double r, double ep, std::string color=defcol);
-        void addTriangle(double x1, double y1, double x2, double y2,
-                         double x3, double y3, std::string colorFill,
-                          double thickness, std::string colorStroke);
-        void addTriangle(double x1, double y1, double x2, double y2,
-                         double x3, double y3, std::string colorFill=defcol);
+        void addTriangle(double x1, double y1, double x2, double y2, double x3, double y3, std::string colorFill, double thickness, std::string colorStroke);
+        void addTriangle(double x1, double y1, double x2, double y2, double x3, double y3, std::string colorFill=defcol);
+        void addRect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, std::string colorFill, double thickness, std::string colorStroke);
+        void addRect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, std::string colorFill=defcol);
+
         void addLine(double x1, double y1, double x2, double y2, std::string color=defcol);
         void addCross(double x, double y, double span, std::string color=defcol);
 
