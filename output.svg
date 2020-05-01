@@ -45,73 +45,37 @@
 <text x="715" y="115" fill="green" >Centralite de degre normalise</text>
 <text x="715" y="135" fill="red" >Centralite de vecteur propre</text>
 <text x="715" y="155" fill="blue" >Centralite de proximite normalise</text>
-<circle cx="300" cy="100" r="5" fill="blue" />
-<text x="300" y="80" fill="black" >A</text>
+<circle cx="200" cy="100" r="5" fill="blue" />
+<text x="200" y="80" fill="black" >A</text>
+<circle cx="100" cy="200" r="5" fill="blue" />
+<text x="100" y="180" fill="black" >B</text>
 <circle cx="200" cy="200" r="5" fill="blue" />
-<text x="200" y="180" fill="black" >B</text>
-<circle cx="400" cy="200" r="5" fill="blue" />
-<text x="400" y="180" fill="black" >C</text>
-<circle cx="300" cy="300" r="5" fill="blue" />
-<text x="300" y="280" fill="black" >D</text>
-<circle cx="200" cy="400" r="5" fill="blue" />
-<text x="200" y="380" fill="black" >E</text>
-<circle cx="300" cy="400" r="5" fill="blue" />
-<text x="300" y="380" fill="black" >F</text>
-<circle cx="400" cy="400" r="5" fill="blue" />
-<text x="400" y="380" fill="black" >G</text>
-<circle cx="100" cy="500" r="5" fill="blue" />
-<text x="100" y="480" fill="black" >H</text>
-<circle cx="500" cy="500" r="5" fill="blue" />
-<text x="500" y="480" fill="black" >I</text>
-<text x="255" y="140" fill="red" >5</text>
-<line x1="300" y1="100" x2="200" y2="200" stroke="black" />
-<text x="255" y="240" fill="red" >9</text>
-<line x1="200" y1="200" x2="300" y2="300" stroke="black" />
-<text x="355" y="240" fill="red" >4</text>
-<line x1="400" y1="200" x2="300" y2="300" stroke="black" />
-<text x="355" y="340" fill="red" >8</text>
-<line x1="300" y1="300" x2="400" y2="400" stroke="black" />
-<text x="155" y="340" fill="red" >4</text>
-<line x1="200" y1="200" x2="100" y2="500" stroke="black" />
-<text x="455" y="340" fill="red" >3</text>
-<line x1="400" y1="200" x2="500" y2="500" stroke="black" />
-<text x="255" y="390" fill="red" >1</text>
-<line x1="200" y1="400" x2="300" y2="400" stroke="black" />
-<text x="355" y="390" fill="red" >4</text>
-<line x1="300" y1="400" x2="400" y2="400" stroke="black" />
-<text x="455" y="440" fill="red" >5</text>
-<line x1="400" y1="400" x2="500" y2="500" stroke="black" />
-<text x="155" y="440" fill="red" >3</text>
-<line x1="200" y1="400" x2="100" y2="500" stroke="black" />
-<text x="305" y="490" fill="red" >2</text>
-<line x1="100" y1="500" x2="500" y2="500" stroke="black" />
-<text x="312" y="80" fill="green" >0.125</text>
-<text x="312" y="68" fill="red" >0.00471578</text>
-<text x="312" y="56" fill="blue" >0.0851064</text>
-<text x="212" y="180" fill="green" >0.375</text>
-<text x="212" y="168" fill="red" >0.0119135</text>
-<text x="212" y="156" fill="blue" >0.135593</text>
-<text x="412" y="180" fill="green" >0.25</text>
-<text x="412" y="168" fill="red" >0.0106725</text>
-<text x="412" y="156" fill="blue" >0.133333</text>
-<text x="312" y="280" fill="green" >0.375</text>
-<text x="312" y="268" fill="red" >0.0138991</text>
-<text x="312" y="256" fill="blue" >0.106667</text>
-<text x="212" y="380" fill="green" >0.25</text>
-<text x="212" y="368" fill="red" >0.00819056</text>
-<text x="212" y="356" fill="blue" >0.150943</text>
-<text x="312" y="380" fill="green" >0.25</text>
-<text x="312" y="368" fill="red" >0.00843876</text>
-<text x="312" y="356" fill="blue" >0.140351</text>
-<text x="412" y="380" fill="green" >0.375</text>
-<text x="412" y="368" fill="red" >0.0138991</text>
-<text x="412" y="356" fill="blue" >0.125</text>
-<text x="112" y="480" fill="green" >0.375</text>
-<text x="112" y="468" fill="red" >0.0134027</text>
-<text x="112" y="456" fill="blue" >0.186047</text>
-<text x="512" y="480" fill="green" >0.375</text>
-<text x="512" y="468" fill="red" >0.0141473</text>
-<text x="512" y="456" fill="blue" >0.177778</text>
+<text x="200" y="180" fill="black" >C</text>
+<circle cx="300" cy="200" r="5" fill="blue" />
+<text x="300" y="180" fill="black" >D</text>
+<circle cx="200" cy="300" r="5" fill="blue" />
+<text x="200" y="280" fill="black" >E</text>
+<text x="155" y="190" fill="red" >2</text>
+<line x1="100" y1="200" x2="200" y2="200" stroke="black" />
+<text x="255" y="190" fill="red" >3</text>
+<line x1="200" y1="200" x2="300" y2="200" stroke="black" />
+<text x="205" y="240" fill="red" >4</text>
+<line x1="200" y1="200" x2="200" y2="300" stroke="black" />
+<text x="212" y="80" fill="green" >0</text>
+<text x="212" y="68" fill="red" >0</text>
+<text x="212" y="56" fill="blue" >-1</text>
+<text x="112" y="180" fill="green" >0.25</text>
+<text x="112" y="168" fill="red" >0.0107998</text>
+<text x="112" y="156" fill="blue" >0.333333</text>
+<text x="212" y="180" fill="green" >0.75</text>
+<text x="212" y="168" fill="red" >0.0323993</text>
+<text x="212" y="156" fill="blue" >0.5</text>
+<text x="312" y="180" fill="green" >0.25</text>
+<text x="312" y="168" fill="red" >0.0107998</text>
+<text x="312" y="156" fill="blue" >0.285714</text>
+<text x="212" y="280" fill="green" >0.25</text>
+<text x="212" y="268" fill="red" >0.0107998</text>
+<text x="212" y="256" fill="blue" >0.25</text>
 
 
 </svg>

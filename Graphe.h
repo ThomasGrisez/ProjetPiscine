@@ -8,6 +8,7 @@
 #include "Arete.h"
 #include "svgfile.h"
 #include "Sommet.h"
+#include <algorithm>
 
 class Graphe
 {
@@ -159,10 +160,12 @@ public:
         }
         std::vector<Arete*> vecAretes = m_aretes;
 
-        for(size_t i=0;i<nbAretes;++i)
-        {
+        ///On met les elements du vecteur dans l'ordre decroissant
+        std::sort(arete.begin(), arete.end());
+        std::reverse(arete.begin(), arete.end());
+
+        for(int i=0;i<nbAretes;++i)
             vecAretes.erase(vecAretes.begin() + arete[i]);
-        }
 
 
         std::ofstream a("TopoAvecAreteSupprimee.txt");
@@ -202,10 +205,12 @@ public:
     {
         return m_sommets.size();
     }
+
     int getTaille()
     {
         return m_aretes.size();
     }
+
     std::vector<int> getId()
     {
         std::vector<int> a;

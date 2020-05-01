@@ -21,7 +21,7 @@ void menu()
             std::cout << "4.Modifier le poids d'une arete du graphe\n";
             std::cout << "5.Supprimer une arete du graphe\n";
             std::cout << "6.Calculer, afficher et sauvegarder les differents indices de centralite\n";
-            std::cout << "7.Tester la connexité du graphe\n";
+            std::cout << "7.Vulnerabilite du graphe\n";
             std::cout << "8.Quitter\n";
             std::cin >> choix;
         }
@@ -95,17 +95,23 @@ void menu()
         case 7:///Vulnerabilite
             {
                 int chx;
-                std::cout << "1.Tester la connexite du graphe complet.\n2.Tester la connexite du graphe avec arete(s) supprimee(s).\n";
+                std::cout << "1.Tester la connexite du graphe complet.\n2.Tester la connexite du graphe avec arete(s) supprimee(s).\n3.Comparer les indices de centralite avant et apres la suppression d'aretes\n";
                 std::cin >> chx;
                 if(chx == 1)
                 {
                     Graphe g{topo,pond};
                     TestConnexite(g);
                 }
-                else
+                if(chx == 2)
                 {
                     Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
                     TestConnexite(g);
+                }
+                if(chx == 3)
+                {
+                    Graphe a{topo,pond};
+                    Graphe b{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    Vulnerabilite(a,b);
                 }
             }
             break;
