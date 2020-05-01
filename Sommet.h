@@ -13,6 +13,7 @@ private:
     std::string m_nom;
     int m_x,m_y;
     std::vector< std::pair<Sommet*,int> > m_voisins;
+    std::vector<Sommet*> m_vecVoisins;
 
 public:
     Sommet(int id, std::string nom, int x, int y) : m_id{id}, m_nom{nom}, m_x{x}, m_y{y}{};
@@ -22,9 +23,13 @@ public:
     int getY(){return m_y;}
     int getDeg(){return m_voisins.size();}
     std::vector< std::pair<Sommet*,int>>& getVoisins(){return m_voisins;}
+    std::vector<Sommet*>& getVecVoisin(){return m_vecVoisins;}
 
     void ajouterVoisin(std::pair<Sommet*,int> a){
             m_voisins.push_back(a);
+    }
+    void ajouterVecVoisin(Sommet* a){
+            m_vecVoisins.push_back(a);
     }
 
     void afficherSommetConsole()

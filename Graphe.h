@@ -15,6 +15,7 @@ private:
     std::vector<Sommet*> m_sommets;
     std::vector<Arete*> m_aretes;
     std::vector<std::pair<int,int>> m_pair;
+    int m_orient;
 
 public:
     Graphe(std::string FichierTopo, std::string FichierPond)
@@ -24,8 +25,7 @@ public:
         /// Lecture du FichierPond
         std::ifstream b{FichierPond};
 
-        int orientation;
-        a >> orientation;
+        a >> m_orient;
 
         int ordre;
         a >> ordre;
@@ -57,7 +57,9 @@ public:
                 m_pair.push_back(std::make_pair(id_arete_pond,poids));
 
                 m_sommets[ex1]->ajouterVoisin(std::make_pair(m_sommets[ex2],poids));
+                m_sommets[ex1]->ajouterVecVoisin(m_sommets[ex2]);
                 m_sommets[ex2]->ajouterVoisin(std::make_pair(m_sommets[ex1],poids));
+                m_sommets[ex2]->ajouterVecVoisin(m_sommets[ex1]);
             }
         }
     }
@@ -73,6 +75,9 @@ public:
     void afficherGrapheConsole()
     {
         std::cout << "=========================GRAPHE=============================\n";
+        if(m_orient == 0)
+            std::cout << "Graphe non oriente\n";
+        else std::cout << "Graphe oriente\n";
         std::cout << "Ordre : " << m_sommets.size() << "\n";
         std::cout << "Liste des sommets :\n";
         for(auto s: m_sommets)
@@ -88,9 +93,8 @@ public:
         }
     }
 
-    void afficherGrapheSvg()
+    void afficherGrapheSvg(Svgfile &out)
     {
-        Svgfile out;
 
         out.addGrid();
         out.addRect(700,100,1000,100,1000,200,700,200,"white",2,"black");
@@ -102,7 +106,6 @@ public:
         {
             out.addDisk(m_sommets[i]->getX()*100, m_sommets[i]->getY()*100, 5, "blue");
             out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getNom(), "black");
-            out.addText(m_sommets[i]->getX()*100+5, (m_sommets[i]->getY()*100)-20,)
         }
         for(size_t i=0; i<m_aretes.size(); ++i)
         {
@@ -139,6 +142,49 @@ public:
         for(size_t j=0; j<m_pair.size(); ++j)
         {
             ofs << m_pair[j].first << " " << m_pair[j].second << std::endl;
+        }
+    }
+
+    void SuppArete()
+    {
+        int nbAretes,numArete;
+        std::vector<int> arete;
+        std::cout << "Combien d'arete voulez-vous supprimer ?\n";
+        std::cin >> nbAretes;
+        for(int i=0;i<nbAretes;++i)
+        {
+            std::cout << "Indiquez l'arete a supprimer : ";
+            std::cin >> numArete;
+            arete.push_back(numArete);
+        }
+        std::vector<Arete*> vecAretes = m_aretes;
+
+        for(size_t i=0;i<nbAretes;++i)
+        {
+            vecAretes.erase(vecAretes.begin() + arete[i]);
+        }
+
+
+        std::ofstream a("TopoAvecAreteSupprimee.txt");
+        std::ofstream b("PondAvecAreteSupprimee.txt");
+
+        a << m_orient << std::endl;
+        a << m_sommets.size() << std::endl;
+
+        for(size_t i=0;i<m_sommets.size();++i)
+        {
+            a << m_sommets[i]->getId() << " " << m_sommets[i]->getNom() << " " << m_sommets[i]->getX() << " " << m_sommets[i]->getY() << std::endl;
+        }
+        a << vecAretes.size() << std::endl;
+        for(size_t i=0;i<vecAretes.size();++i)
+        {
+            a << i << " " << vecAretes[i]->getEx1() << " " << vecAretes[i]->getEx2() << std::endl;
+        }
+
+        b << vecAretes.size() << std::endl;
+        for(size_t i=0;i<vecAretes.size();++i)
+        {
+            b << i << " " << vecAretes[i]->getPoids() << std::endl;
         }
     }
 

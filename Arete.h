@@ -17,6 +17,7 @@ public:
     int getEx1(){return m_ex1;}
     int getEx2(){return m_ex2;}
     int getPoids(){return m_poids;}
+    int getId(){return m_id;}
     void afficherAreteConsole()
     {
         std::cout << " \tArete " << m_id << ", relie le sommet " << m_ex1 << " et le sommet " << m_ex2;
