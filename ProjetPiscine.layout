@@ -2,6 +2,7 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="vulnerabilite.cpp" open="1" top="1" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3245" topLine="87" />
@@ -21,6 +22,33 @@
 		<Cursor>
 			<Cursor1 position="93" topLine="0" />
 		</Cursor>
+=======
+	<File name="svgfile.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="920" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="Calculs.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="274" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Calculs.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8640" topLine="20" />
+		</Cursor>
+		<Folding>
+			<Collapse line="12" />
+			<Collapse line="30" />
+			<Collapse line="41" />
+			<Collapse line="88" />
+			<Collapse line="164" />
+			<Collapse line="201" />
+			<Collapse line="235" />
+			<Collapse line="259" />
+			<Collapse line="281" />
+		</Folding>
+>>>>>>> master
 	</File>
 	<File name="Graphe.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -29,6 +57,7 @@
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="205" topLine="0" />
 		</Cursor>
 	</File>
@@ -45,7 +74,49 @@
 	<File name="svgfile.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="108" topLine="23" />
+=======
+			<Cursor1 position="4215" topLine="0" />
 		</Cursor>
+		<Folding>
+			<Collapse line="22" />
+			<Collapse line="68" />
+			<Collapse line="76" />
+			<Collapse line="97" />
+			<Collapse line="122" />
+			<Collapse line="149" />
+			<Collapse line="194" />
+			<Collapse line="204" />
+			<Collapse line="209" />
+			<Collapse line="214" />
+			<Collapse line="224" />
+			<Collapse line="234" />
+			<Collapse line="245" />
+		</Folding>
+	</File>
+	<File name="Sommet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="712" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="Arete.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="439" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3995" topLine="0" />
+>>>>>>> master
+		</Cursor>
+		<Folding>
+			<Collapse line="31" />
+			<Collapse line="39" />
+			<Collapse line="56" />
+			<Collapse line="76" />
+			<Collapse line="82" />
+			<Collapse line="88" />
+			<Collapse line="95" />
+		</Folding>
 	</File>
 	<File name="svgfile.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>

@@ -40,8 +40,6 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="svgfile.cpp" />
 		<Unit filename="svgfile.h" />
-		<Unit filename="vulnerabilite.cpp" />
-		<Unit filename="vulnerabilite.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

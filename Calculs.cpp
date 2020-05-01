@@ -26,6 +26,7 @@ std::vector<std::pair<float,float>> CentraliteDegresNormalise(Graphe &g)
 
     return vecNorm;
 }
+
 std::vector< std::pair<float,float> > CentraliteDegresNonNormalise(Graphe &g)
 {
     std::vector<std::pair<float,float>> vecNonNorm;
@@ -95,7 +96,7 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
     std::priority_queue < std::pair<Sommet*,int>,std::vector< std::pair<Sommet*,int> >,decltype(cmp) > file(cmp);
     /// pour le marquage
     std::vector<int> couleurs(g.getOrdre(),0);
-    ///pour les pr�d�cesseurs
+    ///pour les predecesseurs
     std::vector<int> preds(g.getOrdre(),-1);
     ///pour les distances
     std::vector<int> dist (g.getOrdre(),-1);
@@ -151,9 +152,15 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 
     Cp_Norm = (g.getOrdre() -1) / sommeDist;
 
-    return std::make_pair(Cp_Norm,Cp_NonNorm);
-};
+    if(Cp_Norm == -1)
+        Cp_Norm = 0;
+    if(Cp_NonNorm == -1)
+        Cp_NonNorm = 0;
 
+
+    return std::make_pair(Cp_Norm,Cp_NonNorm);
+}
+///BFS
 std::vector<int> BFS(int num_s0,Graphe &g)
 {
     /// déclaration de la file
@@ -190,7 +197,6 @@ std::vector<int> BFS(int num_s0,Graphe &g)
 
     return preds;
 }
-
 ///Test de connexité
 void TestConnexite(Graphe &g)
 {
@@ -225,7 +231,6 @@ void TestConnexite(Graphe &g)
             }while(test==true);
             std::cout<<std::endl;
 }
-
 ///Affichage des Indices
 void affichageConsole(Graphe &g)
 {
@@ -250,7 +255,7 @@ void affichageConsole(Graphe &g)
         std::cout << "\tSommet " << g.getNoms()[i] << ", indice Normalise = " << Cp.first << ", indice Non Normalise = " << Cp.second << std::endl;
     }
 }
-
+///Affichage des Indices SVG
 void affichageIndiceSVG(Svgfile &out,Graphe &g)
 {
     std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
@@ -270,8 +275,7 @@ void affichageIndiceSVG(Svgfile &out,Graphe &g)
         out.addText(x+12,y-44,Cp.first,"blue");
     }
 }
-
-
+///Vulnerabilite
 
 ///Sauvegarde Fichier des indices
 void SauvegardeFichier(Graphe &g)
