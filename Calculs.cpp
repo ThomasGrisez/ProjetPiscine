@@ -100,7 +100,7 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
     ///pour les distances
     std::vector<int> dist (g.getOrdre(),-1);
 
-    ///tape initiale, on enfile le sommet initial
+    ///etape initiale, on enfile le sommet initial
     dist[sommetInit] = 0;
     file.push ( std::make_pair(g.getVecSommets()[sommetInit], 0) );
 
@@ -154,81 +154,76 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
     return std::make_pair(Cp_Norm,Cp_NonNorm);
 };
 
-
-///Centralité d'intermediarité
-void CentraliteIntermediarite(int sommetInit, Graphe &g)
+std::vector<int> BFS(int num_s0,Graphe &g)
 {
-    //int n_pcci;///nombre de plus courts chemins allant de sj a sk passant par si
-    std::vector<int> n_pcc(g.getOrdre(),0);///nombre total de plus courts chemins allant de sj a sk
-    std::vector<float> Ci(g.getOrdre(),0);///indice de centralite
+    /// déclaration de la file
+    std::queue <Sommet*> file;
 
-    ///Comparaison pour le plus court chemin
-    auto cmp = [] (std::pair<Sommet*,int> a, std::pair<Sommet*,int> b)
-    {
-        return b.second < a.second;
-    } ;
-    ///file de priorité
-    std::priority_queue < std::pair<Sommet*,int>,std::vector< std::pair<Sommet*,int> >,decltype(cmp) > file(cmp);
     /// pour le marquage
     std::vector<int> couleurs(g.getOrdre(),0);
-    ///pour les prédécesseurs
+    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
     std::vector<int> preds(g.getOrdre(),-1);
-    ///pour les distances
-    std::vector<int> dist (g.getOrdre(),-1);
 
-    ///étape initiale, on enfile le sommet initial
-    dist[sommetInit] = 0;
-    file.push ( std::make_pair(g.getVecSommets()[sommetInit], 0) );
+    ///étape initiale : on enfile et on marque le sommet initial
+    file.push(g.getVecSommets()[num_s0]);
+    couleurs[num_s0]=1;
 
-    std::pair<Sommet*,int> Pair;
-
-    ///Tant que la file n est pas vide
+    Sommet*s;
+    ///tant que la file n'est pas vide
     while(!file.empty())
     {
-        Pair = file.top();
+        s = file.front();
+        std::vector<Sommet*> succ;
+        succ = s->getVecVoisin();
+
+        for(size_t i=0; i< succ.size(); ++i)
+        {
+            if(couleurs[ succ[i]->getId() ] == 0)
+            {
+                couleurs[ succ[i]->getId() ] = 1;
+                preds[ succ[i]->getId() ] = s->getId();
+                file.push(succ[i]);
+            }
+        }
         file.pop();
-
-        while( ( !file.empty() ) && ( couleurs[ Pair.first->getId() ] == 1) )
-        {
-            Pair = file.top();
-            file.pop();
-        }
-        ///on le marque
-        couleurs[Pair.first->getId()] = 1;
-
-        for(auto succ : (Pair.first)->getVoisins() )
-        {
-            ///Si pas marqué
-            if(couleurs[succ.first->getId() ] == 0)
-            {
-                ///Si on trouve un meilleur chemin avec ce sommet
-                if( (dist[ succ.first->getId() ] == -1) || (Pair.second + succ.second < dist[ succ.first->getId() ]) )
-                {
-                    ///on actualise la distance et le predecesseur
-                    dist[ succ.first->getId() ] = Pair.second + succ.second;
-                    preds[ succ.first->getId() ] = Pair.first->getId();
-                    ///on le rentre dans la file
-                    file.push(std::make_pair( succ.first, dist[ succ.first->getId() ] ));
-                }
-            }
-        }
     }
-    /*///Affichage Parcours + Résultat
-        std::cout << fin;
-        for(auto p = preds[fin]; p != -1; p = preds[p])
-        {
-            std::cout << "<--" << p;
-        }
-        std::cout << " : longueur " << dist[fin]-dist[preds[fin]];
-        for(auto p = preds[fin]; p != -1; p = preds[p])
-        {
-            if( dist[p]!= 0)
-            {
-                std::cout << "+" << dist[p]-dist[preds[p]];
-            }
-        }
-        std::cout << "="<<dist[fin];
-    */
+
+    return preds;
+}
+
+///Test de connexité
+void TestConnexite(Graphe &g)
+{
+    size_t num=0;
+            bool test;
+            int ncc=0;
+            ///pour noter les numéros de CC
+            std::vector<int> cc(g.getOrdre(),-1);
+            do{
+                cc[num]=num;
+                std::cout<<std::endl<<"Composante connexe numero "<<ncc<<" : "<< "Sommet " << num <<" ";
+                ncc++;
+                ///lancement d'un BFS sur le sommet num
+                std::vector<int> arbre_BFS=BFS(num,g);
+                ///affichage des sommets decouverts lors du parcours (ceux qui ont un predecesseur
+                for(size_t i=0;i<arbre_BFS.size();++i){
+                    if ((i!=num)&&(arbre_BFS[i]!=-1)){
+                            cc[i]=num;
+                            std::cout<< "Sommet " << i <<" ";
+                    }
+                }
+                ///recherche d'un sommet non exploré
+                ///pour relancer un BFS au prochain tour
+                test=false;
+                for(int i=0;i<g.getOrdre();++i){
+                    if (cc[i]==-1){
+                        num=i;
+                        test=true;
+                        break;
+                    }
+                }
+            }while(test==true);
+            std::cout<<std::endl;
 }
 
 ///Affichage des Indices
@@ -256,6 +251,28 @@ void affichageConsole(Graphe &g)
     }
 }
 
+void affichageIndiceSVG(Svgfile &out,Graphe &g)
+{
+    std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
+    std::vector<float> Cvp = CentraliteVecteurPropre(g);
+
+    Sommet*s;
+    int x,y;
+
+    for(int i=0;i<g.getOrdre();++i)
+    {
+        s = g.getVecSommets()[i];
+        x = s->getX()*100;
+        y = s->getY()*100;
+        out.addText(x+12,y-20,degNorm[i].second,"green");
+        out.addText(x+12,y-32,Cvp[i],"red");
+        std::pair<float,float> Cp = CentraliteProximite(i,g);
+        out.addText(x+12,y-44,Cp.first,"blue");
+    }
+}
+
+
+
 ///Sauvegarde Fichier des indices
 void SauvegardeFichier(Graphe &g)
 {
@@ -264,7 +281,7 @@ void SauvegardeFichier(Graphe &g)
     std::vector<float> Cvp = CentraliteVecteurPropre(g);
     std::ofstream ofs("Indices.txt");
 
-    ofs << "Indice du sommet | Centralite de degre | Centralite de vecteur propre | Centralite de proximite | Centralite d'intermediarite" << std::endl;
+    ofs << "Indice du sommet | Centralite de degre | Centralite de vecteur propre | Centralite de proximite" << std::endl;
     ofs << "A chaque fois : indice Normalisé puis Non Normalisé" << std::endl;
 
     for(int i=0; i< g.getOrdre(); ++i)

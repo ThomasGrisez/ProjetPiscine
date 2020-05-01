@@ -9,7 +9,7 @@ void menu()
 {
     std::string topo="t.txt",pond="p.txt";
     int choix;
-    while(choix!=7)
+    while(choix!=8)
     {
         do
         {
@@ -19,15 +19,16 @@ void menu()
             std::cout << "2.Afficher dans la console\n";
             std::cout << "3.Afficher au format SVG\n";
             std::cout << "4.Modifier le poids d'une arete du graphe\n";
-            std::cout << "5.Calculer, afficher et sauvegarder les differents indices de centralite\n";
-            std::cout << "6.Tester la vulnerabilite du graphe\n";
-            std::cout << "7.Quitter\n";
+            std::cout << "5.Supprimer une arete du graphe\n";
+            std::cout << "6.Calculer, afficher et sauvegarder les differents indices de centralite\n";
+            std::cout << "7.Tester la connexité du graphe\n";
+            std::cout << "8.Quitter\n";
             std::cin >> choix;
         }
-        while(choix < 1 || choix > 7);
+        while(choix < 1 || choix > 8);
         switch(choix)
         {
-        case 1:
+        case 1:///Charger Fichiers
             {
                 std::cout << "Indiquer le fichier de topologie a utiliser : ";
                 std::cin >> topo;
@@ -35,37 +36,80 @@ void menu()
                 std::cin >> pond;
             }
             break;
-        case 2:
+        case 2:///Affichage Console
             {
-                Graphe g{ topo, pond };
-                g.afficherGrapheConsole();
+                int chx;
+                std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    g.afficherGrapheConsole();
+                }
+                else
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    g.afficherGrapheConsole();
+                }
             }
             break;
-        case 3:
+        case 3:///Affichage SVG
             {
-                Graphe g{ topo, pond };
-                g.afficherGrapheSvg();
+                Svgfile out;
+                int chx;
+                std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    g.afficherGrapheSvg(out);
+                    affichageIndiceSVG(out,g);
+                }
+                else
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    g.afficherGrapheSvg(out);
+                    affichageIndiceSVG(out,g);
+                }
             }
             break;
-        case 4:
+        case 4:///Modifier Poids Arete
             {
                 Graphe g{ topo, pond };
                 g.ModifierPonderation();
             }
             break;
-        case 5:
+        case 5:///Supprimer  Arete
+            {
+                Graphe g{ topo, pond };
+                g.SuppArete();
+            }
+            break;
+        case 6:///Affichage Indice Console et Sauvegarde
             {
                 Graphe g{ topo, pond };
                 affichageConsole(g);
                 SauvegardeFichier(g);
             }
             break;
-        case 6:
+        case 7:///Vulnerabilite
             {
-                Graphe g{topo, pond};
+                int chx;
+                std::cout << "1.Tester la connexite du graphe complet.\n2.Tester la connexite du graphe avec arete(s) supprimee(s).\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    TestConnexite(g);
+                }
+                else
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    TestConnexite(g);
+                }
             }
             break;
-        case 7:
+        case 8:///Quitter
             exit(0);
             break;
         }
