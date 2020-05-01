@@ -276,6 +276,33 @@ void affichageIndiceSVG(Svgfile &out,Graphe &g)
     }
 }
 ///Vulnerabilite
+void Vulnerabilite(Graphe &a,Graphe &b)
+{
+    std::vector<std::pair<float,float>> degNormA= CentraliteDegresNormalise(a);
+    std::vector<float> CvpA= CentraliteVecteurPropre(a);
+    std::vector<std::pair<float,float>> degNormB= CentraliteDegresNormalise(b);
+    std::vector<float> CvpB= CentraliteVecteurPropre(b);
+
+
+    std::cout << "======Comparaison des Indices Normalise======\n";
+    std::cout << "Centralite de degres Normalise\n";
+    for(int i=0; i<a.getOrdre();++i)
+    {
+        std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << degNormA[i].second << ", Apres : " << degNormB[i].second << ", Difference : " << degNormA[i].second - degNormB[i].second << std::endl;
+    }
+    std::cout << "======Centralite de Vecteur propre====\n";
+    for(int i=0; i<a.getOrdre();++i)
+    {
+        std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << CvpA[i] << ", Apres : " << CvpB[i] << ", Difference : " << CvpA[i] - CvpB[i] << std::endl;
+    }
+    std::cout << "======Centralite de proximite=========\n";
+    for(int i=0; i<a.getOrdre();++i)
+    {
+        std::pair<float,float> CpA = CentraliteProximite(i,a);
+        std::pair<float,float> CpB = CentraliteProximite(i,b);
+        std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << CpA.first << ", Apres : " << CpB.first << ", Difference : " << CpA.first - CpB.first << std::endl;
+    }
+}
 
 ///Sauvegarde Fichier des indices
 void SauvegardeFichier(Graphe &g)
