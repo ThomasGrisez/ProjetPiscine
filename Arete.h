@@ -14,6 +14,7 @@ private:
 
 public:
     Arete(int id, int ex1, int ex2, int poids):m_id{id}, m_ex1{ex1}, m_ex2{ex2}, m_poids{poids}{};
+    ~Arete() = default;
     int getEx1(){return m_ex1;}
     int getEx2(){return m_ex2;}
     int getPoids(){return m_poids;}

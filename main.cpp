@@ -39,38 +39,46 @@ void menu()
         case 2:///Affichage Console
         {
             int chx;
-            std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
-            std::cin >> chx;
-            if(chx == 1)
+            do
             {
-                Graphe g{topo,pond};
-                g.afficherGrapheConsole();
+                std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    g.afficherGrapheConsole();
+                }
+                if(chx == 2)
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    g.afficherGrapheConsole();
+                }
             }
-            else
-            {
-                Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
-                g.afficherGrapheConsole();
-            }
+            while(chx<1 || chx>2);
         }
         break;
         case 3:///Affichage SVG
         {
             Svgfile out;
             int chx;
-            std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
-            std::cin >> chx;
-            if(chx == 1)
+            do
             {
-                Graphe g{topo,pond};
-                g.afficherGrapheSvg(out);
-                affichageIndiceSVG(out,g);
+                std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    g.afficherGrapheSvg(out);
+                    affichageIndiceSVG(out,g);
+                }
+                if(chx == 2)
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    g.afficherGrapheSvg(out);
+                    affichageIndiceSVG(out,g);
+                }
             }
-            else
-            {
-                Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
-                g.afficherGrapheSvg(out);
-                affichageIndiceSVG(out,g);
-            }
+            while(chx<1 || chx>2);
         }
         break;
         case 4:///Modifier Poids Arete
@@ -88,44 +96,51 @@ void menu()
         case 6:///Affichage Indice Console et Sauvegarde
         {
             int chx;
-            std::cout << "1.Pour le graphe complet\n2.Pour le graphe avec aretes supprimees\n";
-            std::cin >> chx;
-            if(chx == 1)
+            do
             {
-                Graphe g{ topo, pond };
-                affichageConsole(g);
-                SauvegardeFichier(g);
+                std::cout << "1.Pour le graphe complet\n2.Pour le graphe avec aretes supprimees\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{ topo, pond };
+                    affichageConsole(g);
+                    SauvegardeFichier(g);
+                }
+                if(chx == 2)
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    affichageConsole(g);
+                    SauvegardeFichier(g);
+                }
             }
-            if(chx == 2)
-            {
-                Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
-                affichageConsole(g);
-                SauvegardeFichier(g);
-            }
-
+            while(chx<1 || chx>2);
         }
         break;
         case 7:///Vulnerabilite
         {
             int chx;
-            std::cout << "1.Tester la connexite du graphe complet.\n2.Tester la connexite du graphe avec arete(s) supprimee(s).\n3.Comparer les indices de centralite avant et apres la suppression d'aretes\n";
-            std::cin >> chx;
-            if(chx == 1)
+            do
             {
-                Graphe g{topo,pond};
-                TestConnexite(g);
+                std::cout << "1.Tester la connexite du graphe complet.\n2.Tester la connexite du graphe avec arete(s) supprimee(s).\n3.Comparer les indices de centralite avant et apres la suppression d'aretes\n";
+                std::cin >> chx;
+                if(chx == 1)
+                {
+                    Graphe g{topo,pond};
+                    TestConnexite(g);
+                }
+                if(chx == 2)
+                {
+                    Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    TestConnexite(g);
+                }
+                if(chx == 3)
+                {
+                    Graphe a{topo,pond};
+                    Graphe b{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
+                    Vulnerabilite(a,b);
+                }
             }
-            if(chx == 2)
-            {
-                Graphe g{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
-                TestConnexite(g);
-            }
-            if(chx == 3)
-            {
-                Graphe a{topo,pond};
-                Graphe b{"TopoAvecAreteSupprimee.txt","PondAvecAreteSupprimee.txt"};
-                Vulnerabilite(a,b);
-            }
+            while(chx<1 || chx >3);
         }
         break;
         case 8:///Quitter

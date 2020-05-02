@@ -17,6 +17,7 @@ private:
 
 public:
     Sommet(int id, std::string nom, int x, int y) : m_id{id}, m_nom{nom}, m_x{x}, m_y{y}{};
+    ~Sommet() = default;
     int getId(){return m_id;}
     std::string getNom(){return m_nom;}
     int getX(){return m_x;}

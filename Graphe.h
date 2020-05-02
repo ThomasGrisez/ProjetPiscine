@@ -13,10 +13,13 @@
 class Graphe
 {
 private:
-    std::vector<Sommet*> m_sommets;
-    std::vector<Arete*> m_aretes;
-    std::vector<std::pair<int,int>> m_pair;
-    int m_orient;
+    std::vector<Sommet*> m_sommets;///Vecteur de pointeurs sur Sommet
+    std::vector<Arete*> m_aretes;///Vecteur de pointeurs sur Arete
+    std::vector<std::pair<int,int>> m_pair; ///vecteur de paires contenant l' id d une arete et son poids
+    int m_orient;///Orientation du graphe
+
+    ///Rajouter un vec avec aretes supp pour se souvenir des aretes deja supp et l envoyer dans le prog de supp
+
 
 public:
     Graphe(std::string FichierTopo, std::string FichierPond)
@@ -123,6 +126,9 @@ public:
         int numArete,poidsArete;
         std::cout << "Indiquez le fichier dans lequel faire la modification : ";
         std::cin >> fichier;
+        std::cout << "Aretes disponibles :\n";
+        for(size_t i=0; i<m_aretes.size(); ++i)
+            std::cout << "Arete " << m_aretes[i]->getId() << ", relie les sommets " << m_aretes[i]->getEx1() << " et " << m_aretes[i]->getEx2() << std::endl;
         std::cout << "Indiquez l'arete a modifier : ";
         std::cin >> numArete;
         std::cout << "Indiquez le nouveau poids : ";
@@ -150,6 +156,9 @@ public:
         std::vector<int> arete;
         std::cout << "Combien d'arete voulez-vous supprimer ?\n";
         std::cin >> nbAretes;
+        std::cout << "Aretes disponibles :\n";
+        for(size_t i=0; i<m_aretes.size(); ++i)
+            std::cout << "Arete " << m_aretes[i]->getId() << ", relie les sommets " << m_aretes[i]->getEx1() << " et " << m_aretes[i]->getEx2() << std::endl;
         for(int i=0; i<nbAretes; ++i)
         {
             std::cout << "Indiquez l'arete a supprimer : ";
@@ -165,7 +174,7 @@ public:
         for(int i=0; i<nbAretes; ++i)
             vecAretes.erase(vecAretes.begin() + arete[i]);
 
-
+        ///Sauvegarde des graphes avec aretes supprimées
         std::ofstream a("TopoAvecAreteSupprimee.txt");
         std::ofstream b("PondAvecAreteSupprimee.txt");
 
