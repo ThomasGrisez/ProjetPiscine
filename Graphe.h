@@ -158,7 +158,7 @@ public:
             std::cin >> numArete;
             arete.push_back(numArete);
         }
-        std::vector<Arete*> vecAretes = m_aretes;
+        std::vector<Arete*> vecAretes = m_aretes;///Idee : mettre vecAretes dans private et voir ce qu il se passe
 
         ///On met les elements du vecteur dans l'ordre decroissant
         std::sort(arete.begin(), arete.end());
