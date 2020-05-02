@@ -45,23 +45,20 @@ public:
         int taillepond;
         b >> taillepond;
 
-        if(taillepond == tailletopo) /// Si la taille dans le fichier Topologie est égale à la taille dans le fichier Pondération
+        int ex1,ex2,poids;
+        int id_arete_topo, id_arete_pond;
+        for(int j=0; j<taillepond; ++j)
         {
-            int ex1,ex2,poids;
-            int id_arete_topo, id_arete_pond;
-            for(int j=0; j<taillepond; ++j)
-            {
-                b >> id_arete_pond >> poids;
-                a >> id_arete_topo >> ex1 >> ex2;
-                m_aretes.push_back( new Arete{id_arete_topo,ex1,ex2,poids} );
+            b >> id_arete_pond >> poids;
+            a >> id_arete_topo >> ex1 >> ex2;
+            m_aretes.push_back( new Arete{id_arete_topo,ex1,ex2,poids} );
 
-                m_pair.push_back(std::make_pair(id_arete_pond,poids));
+            m_pair.push_back(std::make_pair(id_arete_pond,poids));
 
-                m_sommets[ex1]->ajouterVoisin(std::make_pair(m_sommets[ex2],poids));
-                m_sommets[ex1]->ajouterVecVoisin(m_sommets[ex2]);
-                m_sommets[ex2]->ajouterVoisin(std::make_pair(m_sommets[ex1],poids));
-                m_sommets[ex2]->ajouterVecVoisin(m_sommets[ex1]);
-            }
+            m_sommets[ex1]->ajouterVoisin(std::make_pair(m_sommets[ex2],poids));
+            m_sommets[ex1]->ajouterVecVoisin(m_sommets[ex2]);
+            m_sommets[ex2]->ajouterVoisin(std::make_pair(m_sommets[ex1],poids));
+            m_sommets[ex2]->ajouterVecVoisin(m_sommets[ex1]);
         }
     }
 
@@ -78,7 +75,8 @@ public:
         std::cout << "=========================GRAPHE=============================\n";
         if(m_orient == 0)
             std::cout << "Graphe non oriente\n";
-        else std::cout << "Graphe oriente\n";
+        else
+            std::cout << "Graphe oriente\n";
         std::cout << "Ordre : " << m_sommets.size() << "\n";
         std::cout << "Liste des sommets :\n";
         for(auto s: m_sommets)
@@ -152,19 +150,19 @@ public:
         std::vector<int> arete;
         std::cout << "Combien d'arete voulez-vous supprimer ?\n";
         std::cin >> nbAretes;
-        for(int i=0;i<nbAretes;++i)
+        for(int i=0; i<nbAretes; ++i)
         {
             std::cout << "Indiquez l'arete a supprimer : ";
             std::cin >> numArete;
             arete.push_back(numArete);
         }
-        std::vector<Arete*> vecAretes = m_aretes;///Idee : mettre vecAretes dans private et voir ce qu il se passe
+        std::vector<Arete*> vecAretes = m_aretes;
 
         ///On met les elements du vecteur dans l'ordre decroissant
         std::sort(arete.begin(), arete.end());
         std::reverse(arete.begin(), arete.end());
 
-        for(int i=0;i<nbAretes;++i)
+        for(int i=0; i<nbAretes; ++i)
             vecAretes.erase(vecAretes.begin() + arete[i]);
 
 
@@ -174,18 +172,18 @@ public:
         a << m_orient << std::endl;
         a << m_sommets.size() << std::endl;
 
-        for(size_t i=0;i<m_sommets.size();++i)
+        for(size_t i=0; i<m_sommets.size(); ++i)
         {
             a << m_sommets[i]->getId() << " " << m_sommets[i]->getNom() << " " << m_sommets[i]->getX() << " " << m_sommets[i]->getY() << std::endl;
         }
         a << vecAretes.size() << std::endl;
-        for(size_t i=0;i<vecAretes.size();++i)
+        for(size_t i=0; i<vecAretes.size(); ++i)
         {
             a << i << " " << vecAretes[i]->getEx1() << " " << vecAretes[i]->getEx2() << std::endl;
         }
 
         b << vecAretes.size() << std::endl;
-        for(size_t i=0;i<vecAretes.size();++i)
+        for(size_t i=0; i<vecAretes.size(); ++i)
         {
             b << i << " " << vecAretes[i]->getPoids() << std::endl;
         }

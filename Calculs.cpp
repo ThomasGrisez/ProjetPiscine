@@ -82,6 +82,12 @@ std::vector<float> CentraliteVecteurPropre(Graphe &g)
     }
     while( (lambda - ancienLambda) > 0.01);
 
+    ///Arrondi des valeurs
+    for(size_t i=0;i<Cvp.size();++i)
+    {
+        int entier = (int)((0.0005 + Cvp[i]) * 1000.0);
+        Cvp[i]= (float)entier / 1000.0;
+    }
     return Cvp;
 }
 ///Centralité de proximité
@@ -148,9 +154,19 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
         sommeDist += dist[i];
     }
 
+
     Cp_NonNorm = 1/sommeDist;
 
     Cp_Norm = (g.getOrdre() -1) / sommeDist;
+
+    ///Arrondi des valeurs
+    int entier1,entier2;
+
+    entier1 = (int)((0.0005 + Cp_Norm) * 1000.0);
+    entier2 = (int)((0.0005 + Cp_NonNorm) * 1000.0);
+
+    Cp_Norm = (float)entier1 / 1000.0;
+    Cp_NonNorm = (float)entier2 / 1000.0;
 
     if(Cp_Norm == -1)
         Cp_Norm = 0;
@@ -303,7 +319,6 @@ void Vulnerabilite(Graphe &a,Graphe &b)
         std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << CpA.first << ", Apres : " << CpB.first << ", Difference : " << CpA.first - CpB.first << std::endl;
     }
 }
-
 ///Sauvegarde Fichier des indices
 void SauvegardeFichier(Graphe &g)
 {

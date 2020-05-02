@@ -55,27 +55,29 @@
 <text x="300" y="180" fill="black" >D</text>
 <circle cx="200" cy="300" r="5" fill="blue" />
 <text x="200" y="280" fill="black" >E</text>
-<text x="155" y="190" fill="red" >2</text>
+<text x="205" y="140" fill="red" >1</text>
+<line x1="200" y1="100" x2="200" y2="200" stroke="black" />
+<text x="155" y="190" fill="red" >1</text>
 <line x1="100" y1="200" x2="200" y2="200" stroke="black" />
-<text x="255" y="190" fill="red" >3</text>
+<text x="255" y="190" fill="red" >1</text>
 <line x1="200" y1="200" x2="300" y2="200" stroke="black" />
-<text x="205" y="240" fill="red" >4</text>
+<text x="205" y="240" fill="red" >1</text>
 <line x1="200" y1="200" x2="200" y2="300" stroke="black" />
-<text x="212" y="80" fill="green" >0</text>
-<text x="212" y="68" fill="red" >0</text>
-<text x="212" y="56" fill="blue" >-1</text>
+<text x="212" y="80" fill="green" >0.25</text>
+<text x="212" y="68" fill="red" >0.006</text>
+<text x="212" y="56" fill="blue" >0.571</text>
 <text x="112" y="180" fill="green" >0.25</text>
-<text x="112" y="168" fill="red" >0.0107998</text>
-<text x="112" y="156" fill="blue" >0.333333</text>
-<text x="212" y="180" fill="green" >0.75</text>
-<text x="212" y="168" fill="red" >0.0323993</text>
-<text x="212" y="156" fill="blue" >0.5</text>
+<text x="112" y="168" fill="red" >0.006</text>
+<text x="112" y="156" fill="blue" >0.571</text>
+<text x="212" y="180" fill="green" >1</text>
+<text x="212" y="168" fill="red" >0.024</text>
+<text x="212" y="156" fill="blue" >1</text>
 <text x="312" y="180" fill="green" >0.25</text>
-<text x="312" y="168" fill="red" >0.0107998</text>
-<text x="312" y="156" fill="blue" >0.285714</text>
+<text x="312" y="168" fill="red" >0.006</text>
+<text x="312" y="156" fill="blue" >0.571</text>
 <text x="212" y="280" fill="green" >0.25</text>
-<text x="212" y="268" fill="red" >0.0107998</text>
-<text x="212" y="256" fill="blue" >0.25</text>
+<text x="212" y="268" fill="red" >0.006</text>
+<text x="212" y="256" fill="blue" >0.571</text>
 
 
 </svg>

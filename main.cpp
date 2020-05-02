@@ -85,7 +85,7 @@ void menu()
             g.SuppArete();
         }
         break;
-        case 6:///Affichage Indice Console et Sauvegarde/// rajouter avec aretes suppr
+        case 6:///Affichage Indice Console et Sauvegarde
         {
             int chx;
             std::cout << "1.Pour le graphe complet\n2.Pour le graphe avec aretes supprimees\n";
