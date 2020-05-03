@@ -83,7 +83,7 @@ std::vector<float> CentraliteVecteurPropre(Graphe &g)
     while( (lambda - ancienLambda) > 0.01);
 
     ///Arrondi des valeurs
-    for(size_t i=0;i<Cvp.size();++i)
+    for(size_t i=0; i<Cvp.size(); ++i)
     {
         int entier = (int)((0.0005 + Cvp[i]) * 1000.0);
         Cvp[i]= (float)entier / 1000.0;
@@ -176,6 +176,36 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 
     return std::make_pair(Cp_Norm,Cp_NonNorm);
 }
+///Centralité de proximité Globale
+float ProximiteGlobale(Graphe &g)
+{
+    std::vector<std::pair<float,float>> Cp;
+    float CpGlob;
+    float maxCp = 0;
+    float n = g.getOrdre();
+    float somme = 0;
+    float deno;
+
+    for(int i=0; i<n; ++i)
+        Cp.push_back(CentraliteProximite(i,g));
+
+    for(int i=0; i<n; ++i)
+    {
+        if(maxCp < Cp[i].first)
+            maxCp = Cp[i].first;
+    }
+
+    for(int i=0; i<n; ++i)
+        somme += maxCp - Cp[i].first;
+
+    CpGlob = somme / ((n*n - 3*n +2)/(2*n - 3));
+
+    ///Arrondi des valeurs
+    int entier = (int)((0.0005 + CpGlob) * 1000.0);
+    CpGlob= (float)entier / 1000.0;
+
+    return CpGlob;
+}
 ///BFS
 std::vector<int> BFS(int num_s0,Graphe &g)
 {
@@ -217,35 +247,41 @@ std::vector<int> BFS(int num_s0,Graphe &g)
 void TestConnexite(Graphe &g)
 {
     size_t num=0;
-            bool test;
-            int ncc=0;
-            ///pour noter les numéros de CC
-            std::vector<int> cc(g.getOrdre(),-1);
-            do{
-                cc[num]=num;
-                std::cout<<std::endl<<"Composante connexe numero "<<ncc<<" : "<< "Sommet " << num <<" ";
-                ncc++;
-                ///lancement d'un BFS sur le sommet num
-                std::vector<int> arbre_BFS=BFS(num,g);
-                ///affichage des sommets decouverts lors du parcours (ceux qui ont un predecesseur
-                for(size_t i=0;i<arbre_BFS.size();++i){
-                    if ((i!=num)&&(arbre_BFS[i]!=-1)){
-                            cc[i]=num;
-                            std::cout<< "Sommet " << i <<" ";
-                    }
-                }
-                ///recherche d'un sommet non exploré
-                ///pour relancer un BFS au prochain tour
-                test=false;
-                for(int i=0;i<g.getOrdre();++i){
-                    if (cc[i]==-1){
-                        num=i;
-                        test=true;
-                        break;
-                    }
-                }
-            }while(test==true);
-            std::cout<<std::endl;
+    bool test;
+    int ncc=0;
+    ///pour noter les numéros de CC
+    std::vector<int> cc(g.getOrdre(),-1);
+    do
+    {
+        cc[num]=num;
+        std::cout<<std::endl<<"Composante connexe numero "<<ncc<<" : "<< "Sommet " << num <<" ";
+        ncc++;
+        ///lancement d'un BFS sur le sommet num
+        std::vector<int> arbre_BFS=BFS(num,g);
+        ///affichage des sommets decouverts lors du parcours (ceux qui ont un predecesseur
+        for(size_t i=0; i<arbre_BFS.size(); ++i)
+        {
+            if ((i!=num)&&(arbre_BFS[i]!=-1))
+            {
+                cc[i]=num;
+                std::cout<< "Sommet " << i <<" ";
+            }
+        }
+        ///recherche d'un sommet non exploré
+        ///pour relancer un BFS au prochain tour
+        test=false;
+        for(int i=0; i<g.getOrdre(); ++i)
+        {
+            if (cc[i]==-1)
+            {
+                num=i;
+                test=true;
+                break;
+            }
+        }
+    }
+    while(test==true);
+    std::cout<<std::endl;
 }
 ///Affichage des Indices
 void affichageConsole(Graphe &g)
@@ -281,13 +317,13 @@ void affichageIndiceSVG(Svgfile &out,Graphe &g)
     int x,y;
     std::string couleur = "blue";
     float degMax = 0;
-    for(int i =0; i<g.getOrdre();++i)
+    for(int i =0; i<g.getOrdre(); ++i)
     {
         if(degMax <= degNorm[i].second)
             degMax = degNorm[i].second;
     }
 
-    for(int i=0;i<g.getOrdre();++i)
+    for(int i=0; i<g.getOrdre(); ++i)
     {
         if(degNorm[i].second < 0.25*degMax)
             couleur = "white";
@@ -316,26 +352,31 @@ void Vulnerabilite(Graphe &a,Graphe &b)
     std::vector<float> CvpA= CentraliteVecteurPropre(a);
     std::vector<std::pair<float,float>> degNormB= CentraliteDegresNormalise(b);
     std::vector<float> CvpB= CentraliteVecteurPropre(b);
-
+    float CpGlobA = ProximiteGlobale(a);
+    float CpGlobB = ProximiteGlobale(b);
 
     std::cout << "======Comparaison des Indices Normalise======\n";
     std::cout << "Centralite de degres Normalise\n";
-    for(int i=0; i<a.getOrdre();++i)
+    for(int i=0; i<a.getOrdre(); ++i)
     {
         std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << degNormA[i].second << ", Apres : " << degNormB[i].second << ", Difference : " << degNormA[i].second - degNormB[i].second << std::endl;
     }
     std::cout << "======Centralite de Vecteur propre====\n";
-    for(int i=0; i<a.getOrdre();++i)
+    for(int i=0; i<a.getOrdre(); ++i)
     {
         std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << CvpA[i] << ", Apres : " << CvpB[i] << ", Difference : " << CvpA[i] - CvpB[i] << std::endl;
     }
     std::cout << "======Centralite de proximite=========\n";
-    for(int i=0; i<a.getOrdre();++i)
+    for(int i=0; i<a.getOrdre(); ++i)
     {
         std::pair<float,float> CpA = CentraliteProximite(i,a);
         std::pair<float,float> CpB = CentraliteProximite(i,b);
         std::cout << "\tSommet " << a.getNoms()[i] << ", Avant : " << CpA.first << ", Apres : " << CpB.first << ", Difference : " << CpA.first - CpB.first << std::endl;
     }
+    std::cout << "======Centralite de proximite Globale=========\n";
+    std::cout << "\tGraphe complet : " << CpGlobA << std::endl;
+    std::cout << "\tGraphe Modifie : " << CpGlobB << std::endl;
+    std::cout << "\tDifference (Graphe complet - Graphe Modifie) : " << CpGlobA - CpGlobB << std::endl;
 }
 ///Sauvegarde Fichier des indices
 void SauvegardeFichier(Graphe &g)

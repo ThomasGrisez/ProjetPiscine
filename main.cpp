@@ -5,6 +5,14 @@
 #include "Calculs.h"
 #include "proximite.h"
 
+/**
+Certains morceaux de codes ont ete repris d'anciens TP comme :
+L'algo de Dijkstra(TP3)
+Le BFS et la recherche de composante connexe(TP2)
+Toute la partie Svg du premier semestre
+ */
+
+
 void menu()
 {
     std::string topo,pond;
@@ -68,7 +76,7 @@ void menu()
             int chx;
             do
             {
-                std::cout << "1.Afficher le graphe complet.\n2.Aficher le graphe avec arete(s) supprimee(s).\n";
+                std::cout << "1.Afficher le graphe complet.\n2.Afficher le graphe avec arete(s) supprimee(s).\n";
                 std::cin >> chx;
                 if(chx == 1)
                 {
