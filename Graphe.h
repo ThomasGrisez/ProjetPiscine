@@ -18,9 +18,6 @@ private:
     std::vector<std::pair<int,int>> m_pair; ///vecteur de paires contenant l' id d une arete et son poids
     int m_orient;///Orientation du graphe
 
-    ///Rajouter un vec avec aretes supp pour se souvenir des aretes deja supp et l envoyer dans le prog de supp
-
-
 public:
     Graphe(std::string FichierTopo, std::string FichierPond)
     {
@@ -99,23 +96,27 @@ public:
     {
 
         out.addGrid();
-        out.addRect(700,100,1000,100,1000,200,700,200,"white",2,"black");
+        out.addRect(700,100,1000,100,1000,280,700,280,"lightgray",2,"black");
         out.addText(715,115, "Centralite de degre normalise", "green");
         out.addText(715,135,"Centralite de vecteur propre","red");
         out.addText(715,155,"Centralite de proximite normalise","blue");
+        out.addText(715,175,"La couleur du sommets depend ","black");
+        out.addText(715,195,"de son degre :","black");
+        out.addText(715,215,"Superieur a 75% du degre max","red");
+        out.addText(715,235,"Superieur a 50% du degre max","orange");
+        out.addText(715,255,"Superieur a 25% du degre max","yellow");
+        out.addText(715,275,"Inferieur a 25% du degre max","white");
 
         for(size_t i=0; i<m_sommets.size(); ++i)
-        {
-            out.addDisk(m_sommets[i]->getX()*100, m_sommets[i]->getY()*100, 5, "blue");
             out.addText(m_sommets[i]->getX()*100, (m_sommets[i]->getY()*100)-20, m_sommets[i]->getNom(), "black");
-        }
+
         for(size_t i=0; i<m_aretes.size(); ++i)
         {
             int x1= m_sommets[m_aretes[i]->getEx1()]->getX()*100;
             int y1= m_sommets[m_aretes[i]->getEx1()]->getY()*100;
             int x2= m_sommets[m_aretes[i]->getEx2()]->getX()*100;
             int y2= m_sommets[m_aretes[i]->getEx2()]->getY()*100;
-            out.addText((x1+x2)/2+5, (y1+y2)/2-10, m_aretes[i]->getPoids(), "red");
+            out.addText((x1+x2)/2+5, (y1+y2)/2-10, m_aretes[i]->getPoids(), "purple");
             out.addLine(x1,y1,x2,y2,"black");
         }
     }

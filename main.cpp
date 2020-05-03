@@ -7,7 +7,12 @@
 
 void menu()
 {
-    std::string topo="t.txt",pond="p.txt";
+    std::string topo,pond;
+    std::cout << "Indiquer le fichier de topologie a utiliser : ";
+    std::cin >> topo;
+    std::cout << "Indiquer le fichier de ponderation a utiliser : ";
+    std::cin >> pond;
+
     int choix;
     while(choix!=8)
     {

@@ -168,9 +168,9 @@ std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
     Cp_Norm = (float)entier1 / 1000.0;
     Cp_NonNorm = (float)entier2 / 1000.0;
 
-    if(Cp_Norm == -1)
+    if(Cp_Norm < 0)
         Cp_Norm = 0;
-    if(Cp_NonNorm == -1)
+    if(Cp_NonNorm < 0)
         Cp_NonNorm = 0;
 
 
@@ -279,12 +279,30 @@ void affichageIndiceSVG(Svgfile &out,Graphe &g)
 
     Sommet*s;
     int x,y;
+    std::string couleur = "blue";
+    float degMax = 0;
+    for(int i =0; i<g.getOrdre();++i)
+    {
+        if(degMax <= degNorm[i].second)
+            degMax = degNorm[i].second;
+    }
 
     for(int i=0;i<g.getOrdre();++i)
     {
+        if(degNorm[i].second < 0.25*degMax)
+            couleur = "white";
+        if(degNorm[i].second >= 0.25*degMax)
+            couleur = "yellow";
+        if(degNorm[i].second >= 0.50*degMax)
+            couleur = "orange";
+        if(degNorm[i].second >= 0.75*degMax)
+            couleur = "red";
+
         s = g.getVecSommets()[i];
         x = s->getX()*100;
         y = s->getY()*100;
+        out.addDisk(x,y,6,"black");
+        out.addDisk(x,y,5,couleur);
         out.addText(x+12,y-20,degNorm[i].second,"green");
         out.addText(x+12,y-32,Cvp[i],"red");
         std::pair<float,float> Cp = CentraliteProximite(i,g);

@@ -41,43 +41,96 @@
 <text x="905" y="15" fill="lightgrey" >900</text>
 <line x1="1000" y1="0" x2="1000" y2="800" stroke="lightgrey" />
 <text x="1005" y="15" fill="lightgrey" >1000</text>
-<polygon points=" 700,100 1000,100 1000,200 700,200" style="fill:white;stroke:black;stroke-width:2" />
+<polygon points=" 700,100 1000,100 1000,280 700,280" style="fill:lightgray;stroke:black;stroke-width:2" />
 <text x="715" y="115" fill="green" >Centralite de degre normalise</text>
 <text x="715" y="135" fill="red" >Centralite de vecteur propre</text>
 <text x="715" y="155" fill="blue" >Centralite de proximite normalise</text>
-<circle cx="200" cy="100" r="5" fill="blue" />
-<text x="200" y="80" fill="black" >A</text>
-<circle cx="100" cy="200" r="5" fill="blue" />
-<text x="100" y="180" fill="black" >B</text>
-<circle cx="200" cy="200" r="5" fill="blue" />
-<text x="200" y="180" fill="black" >C</text>
-<circle cx="300" cy="200" r="5" fill="blue" />
-<text x="300" y="180" fill="black" >D</text>
-<circle cx="200" cy="300" r="5" fill="blue" />
-<text x="200" y="280" fill="black" >E</text>
-<text x="205" y="140" fill="red" >1</text>
-<line x1="200" y1="100" x2="200" y2="200" stroke="black" />
-<text x="155" y="190" fill="red" >1</text>
-<line x1="100" y1="200" x2="200" y2="200" stroke="black" />
-<text x="255" y="190" fill="red" >1</text>
-<line x1="200" y1="200" x2="300" y2="200" stroke="black" />
-<text x="205" y="240" fill="red" >1</text>
-<line x1="200" y1="200" x2="200" y2="300" stroke="black" />
-<text x="212" y="80" fill="green" >0.25</text>
-<text x="212" y="68" fill="red" >0.006</text>
-<text x="212" y="56" fill="blue" >0.571</text>
-<text x="112" y="180" fill="green" >0.25</text>
-<text x="112" y="168" fill="red" >0.006</text>
-<text x="112" y="156" fill="blue" >0.571</text>
-<text x="212" y="180" fill="green" >1</text>
-<text x="212" y="168" fill="red" >0.024</text>
-<text x="212" y="156" fill="blue" >1</text>
-<text x="312" y="180" fill="green" >0.25</text>
-<text x="312" y="168" fill="red" >0.006</text>
-<text x="312" y="156" fill="blue" >0.571</text>
-<text x="212" y="280" fill="green" >0.25</text>
-<text x="212" y="268" fill="red" >0.006</text>
-<text x="212" y="256" fill="blue" >0.571</text>
+<text x="715" y="175" fill="black" >La couleur du sommets depend </text>
+<text x="715" y="195" fill="black" >de son degre :</text>
+<text x="715" y="215" fill="red" >Superieur a 75% du degre max</text>
+<text x="715" y="235" fill="orange" >Superieur a 50% du degre max</text>
+<text x="715" y="255" fill="yellow" >Superieur a 25% du degre max</text>
+<text x="715" y="275" fill="white" >Inferieur a 25% du degre max</text>
+<text x="300" y="80" fill="black" >A</text>
+<text x="200" y="180" fill="black" >B</text>
+<text x="400" y="180" fill="black" >C</text>
+<text x="300" y="280" fill="black" >D</text>
+<text x="200" y="380" fill="black" >E</text>
+<text x="300" y="380" fill="black" >F</text>
+<text x="400" y="380" fill="black" >G</text>
+<text x="100" y="480" fill="black" >H</text>
+<text x="500" y="480" fill="black" >I</text>
+<text x="255" y="140" fill="purple" >1</text>
+<line x1="300" y1="100" x2="200" y2="200" stroke="black" />
+<text x="355" y="140" fill="purple" >1</text>
+<line x1="300" y1="100" x2="400" y2="200" stroke="black" />
+<text x="255" y="240" fill="purple" >1</text>
+<line x1="200" y1="200" x2="300" y2="300" stroke="black" />
+<text x="355" y="240" fill="purple" >1</text>
+<line x1="400" y1="200" x2="300" y2="300" stroke="black" />
+<text x="255" y="340" fill="purple" >1</text>
+<line x1="300" y1="300" x2="200" y2="400" stroke="black" />
+<text x="355" y="340" fill="purple" >1</text>
+<line x1="300" y1="300" x2="400" y2="400" stroke="black" />
+<text x="155" y="340" fill="purple" >1</text>
+<line x1="200" y1="200" x2="100" y2="500" stroke="black" />
+<text x="455" y="340" fill="purple" >1</text>
+<line x1="400" y1="200" x2="500" y2="500" stroke="black" />
+<text x="255" y="390" fill="purple" >1</text>
+<line x1="200" y1="400" x2="300" y2="400" stroke="black" />
+<text x="355" y="390" fill="purple" >1</text>
+<line x1="300" y1="400" x2="400" y2="400" stroke="black" />
+<text x="455" y="440" fill="purple" >1</text>
+<line x1="400" y1="400" x2="500" y2="500" stroke="black" />
+<text x="155" y="440" fill="purple" >1</text>
+<line x1="200" y1="400" x2="100" y2="500" stroke="black" />
+<text x="305" y="490" fill="purple" >1</text>
+<line x1="100" y1="500" x2="500" y2="500" stroke="black" />
+<circle cx="300" cy="100" r="6" fill="black" />
+<circle cx="300" cy="100" r="5" fill="orange" />
+<text x="312" y="80" fill="green" >0.25</text>
+<text x="312" y="68" fill="red" >0.007</text>
+<text x="312" y="56" fill="blue" >0.444</text>
+<circle cx="200" cy="200" r="6" fill="black" />
+<circle cx="200" cy="200" r="5" fill="red" />
+<text x="212" y="180" fill="green" >0.375</text>
+<text x="212" y="168" fill="red" >0.011</text>
+<text x="212" y="156" fill="blue" >0.571</text>
+<circle cx="400" cy="200" r="6" fill="black" />
+<circle cx="400" cy="200" r="5" fill="red" />
+<text x="412" y="180" fill="green" >0.375</text>
+<text x="412" y="168" fill="red" >0.011</text>
+<text x="412" y="156" fill="blue" >0.571</text>
+<circle cx="300" cy="300" r="6" fill="black" />
+<circle cx="300" cy="300" r="5" fill="red" />
+<text x="312" y="280" fill="green" >0.5</text>
+<text x="312" y="268" fill="red" >0.015</text>
+<text x="312" y="256" fill="blue" >0.667</text>
+<circle cx="200" cy="400" r="6" fill="black" />
+<circle cx="200" cy="400" r="5" fill="red" />
+<text x="212" y="380" fill="green" >0.375</text>
+<text x="212" y="368" fill="red" >0.011</text>
+<text x="212" y="356" fill="blue" >0.571</text>
+<circle cx="300" cy="400" r="6" fill="black" />
+<circle cx="300" cy="400" r="5" fill="orange" />
+<text x="312" y="380" fill="green" >0.25</text>
+<text x="312" y="368" fill="red" >0.007</text>
+<text x="312" y="356" fill="blue" >0.444</text>
+<circle cx="400" cy="400" r="6" fill="black" />
+<circle cx="400" cy="400" r="5" fill="red" />
+<text x="412" y="380" fill="green" >0.375</text>
+<text x="412" y="368" fill="red" >0.011</text>
+<text x="412" y="356" fill="blue" >0.571</text>
+<circle cx="100" cy="500" r="6" fill="black" />
+<circle cx="100" cy="500" r="5" fill="red" />
+<text x="112" y="480" fill="green" >0.375</text>
+<text x="112" y="468" fill="red" >0.011</text>
+<text x="112" y="456" fill="blue" >0.615</text>
+<circle cx="500" cy="500" r="6" fill="black" />
+<circle cx="500" cy="500" r="5" fill="red" />
+<text x="512" y="480" fill="green" >0.375</text>
+<text x="512" y="468" fill="red" >0.011</text>
+<text x="512" y="456" fill="blue" >0.615</text>
 
 
 </svg>
