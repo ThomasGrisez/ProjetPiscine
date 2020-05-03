@@ -379,3 +379,19 @@ void Vulnerabilite(Graphe &a,Graphe &b)
     std::cout << "\tDifference (Graphe complet - Graphe Modifie) : " << CpGlobA - CpGlobB << std::endl;
 }
 ///Sauvegarde Fichier des indices
+void SauvegardeFichier(Graphe &g)
+{
+    std::vector<std::pair<float,float>> degNorm = CentraliteDegresNormalise(g);
+    std::vector<std::pair<float,float>> degNonNorm = CentraliteDegresNormalise(g);
+    std::vector<float> Cvp = CentraliteVecteurPropre(g);
+    std::ofstream ofs("Indices.txt");
+
+    ofs << "Indice du sommet | Centralite de degre | Centralite de vecteur propre | Centralite de proximite" << std::endl;
+    ofs << "A chaque fois : indice Normalisé puis Non Normalisé" << std::endl;
+
+    for(int i=0; i< g.getOrdre(); ++i)
+    {
+        std::pair<float,float> Cp = CentraliteProximite(i,g);
+        ofs << g.getId()[i] <<" | "<< degNorm[i].second <<"  "<< degNonNorm[i].second <<" | "<< Cvp[i] <<" | "<< Cp.first <<"   "<< Cp.second << std::endl;
+    }
+}
