@@ -38,7 +38,58 @@ std::vector< std::pair<float,float> > CentraliteDegresNonNormalise(Graphe &g)
     return vecNonNorm;
 }
 ///Centralité de vecteur propre
+std::vector<float> CentraliteVecteurPropre(Graphe &g)
+{
+    float lambda = 0;
+    float ancienLambda;
+    float somme = 0;
+    int ordre = g.getOrdre();
+    std::vector<float> Cvp;
+    std::vector<float> c;
+    for(int i=0; i<ordre; ++i)
+    {
+        Cvp.push_back(1);
+        c.push_back(0);
+    }
 
+
+    do
+    {
+        for(int i=0; i<ordre; ++i)
+            c[i] = 0;
+        for(int i=0; i< ordre ; ++i)///Pour chaque sommet
+        {
+            int nbVoisins = ( g.getVecVoisins()[i] ).size();
+            for(int j=0; j<nbVoisins; ++j) /// Faire la somme des indices de ses voisins
+            {
+                Sommet* Voisin = ((g.getVecVoisins()[i])[j].first);
+                int numVoisin = Voisin->getId();
+                c[i] = c[i] + Cvp[numVoisin];
+            }
+        }
+
+        for(int i=0 ; i<ordre; ++i)
+        {
+            somme = somme + c[i]*c[i];
+        }
+        ancienLambda = lambda;
+        lambda = pow(somme,0.5);
+
+        for(int i=0; i<ordre; ++i)
+        {
+            Cvp[i] = c[i] / lambda;
+        }
+    }
+    while( (lambda - ancienLambda) > 0.01);
+
+    ///Arrondi des valeurs
+    for(size_t i=0; i<Cvp.size(); ++i)
+    {
+        int entier = (int)((0.0005 + Cvp[i]) * 1000.0);
+        Cvp[i]= (float)entier / 1000.0;
+    }
+    return Cvp;
+}
 ///Centralité de proximité
 std::pair<float,float> CentraliteProximite(int sommetInit, Graphe &g)
 {
